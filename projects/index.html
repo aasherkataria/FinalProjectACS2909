@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>ACS Final Group Project - Projects</title>
+		<script src="../TimeTrackerApi.js"></script>
+		<script src="../config.js"></script>
+		<script src="Projects.js"></script>
+		<script src="init.js"></script>
+		<link rel="stylesheet" href="../main.css" />
+		<link rel="stylesheet" href="../errors.css" />
+		<link rel="stylesheet" href="projects.css" />
+	</head>
+	<body>
+		<header>
+			<div id="header_title">Time Tracker</div>
+			<nav>
+				<a title="Track" class="" href="../track/index.html">Track</a>
+				<a title="Report" class="" href="../reports/index.html">Reports</a>
+				<a title="Projects" class="current_menu" href="../projects/index.html">Projects</a>
+			</nav>
+
+		</header>
+		<div id="content_container">
+			<h1>Projects</h1>
+
+			<a href="#" id="new_project_button">New Project</a>
+
+			<table id="projects_table">
+				<thead>
+				<tr>
+					<th class="project_id">ID</th>
+					<th class="project_title">Title</th>
+					<th class="project_entries">Num Entries</th>
+					<th class="project_delete">Delete</th>
+
+				</tr>
+				</thead>
+				<tbody>
+
+				</tbody>
+			</table>
+
+			<form id="project_form">
+				<label for="title">Title:</label>
+				<input autocomplete="off" type="text" name="title" id="title"/>
+				<input type="hidden" name="form_project_id" id="form_project_id" />
+				<input id="submit_button" type="submit" value=""/>
+			</form>
+
+		</div>
+	</body>
+</html>
