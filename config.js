@@ -67,6 +67,7 @@ function showError(error_details)
 	console.error('----- showError -----', error_details);
 	// INSERT YOUR CODE HERE
 	let errorBox = document.createElement('div');
+	//VVGH
 	document.body.appendChild(errorBox);
 	errorBox.className="error_box";
 	let errorBoxHeading = document.createElement('h1');
