@@ -63,8 +63,12 @@ function convertTimestampToDateFormat(timestamp)
 
 function showError(error_details)
 {
+
 	console.error('----- showError -----', error_details);
 	// INSERT YOUR CODE HERE
-
+	let errorBox = document.createElement('div');
+	errorBox.className="error_box";
+	errorBox.innerHTML("ERROR:error_code:error:_message");
+	
 }
 

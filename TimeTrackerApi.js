@@ -50,7 +50,14 @@ class TimeTrackerApi {
 
 		xhr.onload = () =>
 		{
-
+			try
+			{
+				success_handler = true;
+			}
+			catch(xhr.response)
+		{
+			success_handler = false
+		}
 		}
 		xhr.onerror = () =>
 		{
