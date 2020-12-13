@@ -66,15 +66,21 @@ function showError(error_details)
 
 	console.error('----- showError -----', error_details);
 	// INSERT YOUR CODE HERE
+	// creating error box of element type div
 	let errorBox = document.createElement('div');
-	//VVGH
+	// appending error box in div
 	document.body.appendChild(errorBox);
+	// creating classs for error box to edit in css
 	errorBox.className="error_box";
+	// creating error box heading 
 	let errorBoxHeading = document.createElement('h1');
+	// storing error response code in error code
 	let errorCode = xhr.response.code;
-    
+    // storing error text in error name
 	let errorName = xhr.response.error_details;
+	// puuting each error inerrorBoxHeading 
 	errorBoxHeading.innerHTML = "ERROR: "+errorCode+":"+errorName;
+	// appending errorBoxHeading in error box 
 	errorBox.appendChild(errorBoxHeading);
 	
 }
