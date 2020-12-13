@@ -79,7 +79,7 @@ function showError(error_details)
     // storing error text in error name
 	let errorName = xhr.response.error_details;
 	// puuting each error inerrorBoxHeading 
-	errorBoxHeading.innerHTML = "ERROR: "+errorCode+":"+errorName;
+	errorBoxHeading.innerHTML = `ERROR: ${errorCode} : ${errorName}`;
 	// appending errorBoxHeading in error box 
 	errorBox.appendChild(errorBoxHeading);
 	
