@@ -71,7 +71,7 @@ function showError(error_details)
 	errorBox.className="error_box";
 	let errorBoxHeading = document.createElement('h1');
 	let errorCode = xhr.response.code;
-    //storing colour name
+    
 	let errorName = xhr.response.error_details;
 	errorBoxHeading.innerHTML = "ERROR: "+errorCode+":"+errorName;
 	errorBox.appendChild(errorBoxHeading);
