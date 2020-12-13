@@ -67,8 +67,14 @@ function showError(error_details)
 	console.error('----- showError -----', error_details);
 	// INSERT YOUR CODE HERE
 	let errorBox = document.createElement('div');
+	document.body.appendChild(errorBox);
 	errorBox.className="error_box";
-	errorBox.innerHTML("ERROR:error_code:error:_message");
+	let errorBoxHeading = document.createElement('h1');
+	let errorCode = xhr.response.code;
+    //storing colour name
+	let errorName = xhr.response.error_details;
+	errorBoxHeading.innerHTML = "ERROR: "+errorCode+":"+errorName;
+	errorBox.appendChild(errorBoxHeading);
 	
 }
 
