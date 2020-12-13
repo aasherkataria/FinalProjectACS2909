@@ -33,8 +33,12 @@ class TimeTrackerApi {
 		 //send the request
 		 xhr.send();
 
-		 //let the xhrRequestHandler handle onload request
-		 this.xhrRequestHandler(xhr);
+		//  //let the xhrRequestHandler handle onload request
+		//  this.xhrRequestHandler(xhr);
+
+		xhr.onload = () => {
+			console.log(xhr.response);
+		}
 
 	}
 
@@ -42,12 +46,6 @@ class TimeTrackerApi {
 	{
 		console.log('----- xhrRequestHandler -----', xhr.responseURL);
 		// INSERT YOUR CODE HERE
-
-		//create the showError function to show the error response
-		function showError() {
-			alert(xhr.response);
-		}
-
 		xhr.onload = () =>
 		{
 			try

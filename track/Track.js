@@ -13,7 +13,6 @@ class Track
 		this.stop_button = document.getElementById('stop_button'); //added line
 		this.track_form = document.getElementById('track_form'); //added line
 
-		console.log(this.start_button);
 
 		// Update the timer immediately, then trigger the callback every second to update the clock
 		this.updateTimer();
