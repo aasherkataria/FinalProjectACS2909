@@ -61,7 +61,7 @@ class TimeTrackerApi {
 			success_handler = false
 		}
 		xhr.onerror = () => {
-			showError();
+			showError(xhr.response); //added the param response
 		}
 	}
 }
