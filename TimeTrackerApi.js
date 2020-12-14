@@ -44,10 +44,11 @@ class TimeTrackerApi {
 
 		xhr.onload = () => {
 			console.log(xhr.response);
+			console.log(xhr.getAllResponseHeaders());
 		}
 
 		xhr.onerror = () => {
-			console.log(xhr.getAllResponseHeaders());
+			
 		}
 
 	}
