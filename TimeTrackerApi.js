@@ -15,6 +15,13 @@ class TimeTrackerApi {
 
 	}
 
+	/**
+	 * 
+	 * @param {string} method The method necessary to make the XMLHTTPRequest 
+	 * @param {string} path The path appended to the url  
+	 * @param {object} parameters An object of values that are passed for API calls that require additional information being passed.
+	 * @callback success_handler is a callback function provided by the caller which is to be called if the response is successfu
+	 */
 	makeRequest(method, path, parameters = {}, success_handler = false)
 	{
 
@@ -24,32 +31,25 @@ class TimeTrackerApi {
 				'path' : path,
 				'handler': success_handler
 			});
+
+		
 		// INSERT YOUR CODE HERE
-		//create an xhr request with the object provided
-		 const xhr = new XMLHttpRequest();;
+		//create an xhr with the object provided
+		 const xhr = new XMLHttpRequest();
 		 //url object that has base url and path attached
 		 let url = new URL(path, this.base_url);
 		 console.log(url);
 		 //create a request 
 		 xhr.open(method, url);
+		 //provide the api key to the xhr object
 		 xhr.setRequestHeader('api-key', this.api_key);
 		 //set response type to json
 		 xhr.responseType = 'json';
 		 //send the request
 		 xhr.send();
 
-		//  //let the xhrRequestHandler handle onload request
-		//  this.xhrRequestHandler(xhr);
-
-
-		xhr.onload = () => {
-			console.log(xhr.response);
-			console.log(xhr.getAllResponseHeaders());
-		}
-
-		xhr.onerror = () => {
-			
-		}
+		//let the xhrRequestHandler handle onload request
+		 this.xhrRequestHandler(xhr);
 
 	}
 
@@ -58,7 +58,9 @@ class TimeTrackerApi {
 		console.log('----- xhrRequestHandler -----', xhr.responseURL);
 		// INSERT YOUR CODE HERE
 		xhr.onload = () => {
-			success_handler = false
+			console.log(xhr.response);
+			console.log(xhr.getAllResponseHeaders());
+			console.log(success_handler);
 		}
 		xhr.onerror = () => {
 			showError(xhr.response); //added the param response
