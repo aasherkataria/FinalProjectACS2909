@@ -22,6 +22,7 @@ class Track
 		this.company_id = company_id;
 
 		// INSERT YOUR CODE HERE
+		this.loadProjects();
 
 	}
 
