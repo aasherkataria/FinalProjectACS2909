@@ -43,8 +43,9 @@ my_api = null;
 
 function saveUserID(profile_object) {
 	console.log('----- saveUserID -----', profile_object);
-	// INSERT YOUR CODE HERE
-	let user_id = localStorage.setItem("user",JSON.stringify(profile_object));
+	// sets user_id to the localstorage
+	localStorage.setItem("user_id",profile_object.user_id);
+	
 }
 
 function convertSecondsToHoursMinutesSeconds(seconds) {
@@ -52,9 +53,9 @@ function convertSecondsToHoursMinutesSeconds(seconds) {
 	// Makes sure parameter is a number
 	seconds = Number(seconds);
 	//Math.Floor returns the largest integer less than or equal to a given number.
-	let hours = Math.floor(d / 3600);
-	let minutes = Math.floor(d % 3600 / 60);
-	let secs = Math.floor(d % 3600 % 60);
+	let hours = Math.floor(seconds / 3600);
+	let minutes = Math.floor(seconds % 3600 / 60);
+	let secs = Math.floor(seconds % 3600 % 60);
 	// use .slice to return 2 characters from the end
 	return ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + secs).slice(-2);
 }
@@ -63,15 +64,11 @@ function convertTimestampToDateFormat(timestamp) {
 	console.log('----- convertTimestampToDateFormat -----', timestamp);
 	// Create a new JavaScript Date object based on the timestamp
 	// multiplied by 1000 so that the argument is in milliseconds, not seconds.
-    let date = new Date(timestamp * 1000);
-    // proper formatting for month, date, hour, minutes and seconds.
-    let month = date.getMonth()<10 ? "0"+date.getMonth(): date.getMonth();
-    let day = date.getDate()<10 ? "0"+date.getDate(): date.getDate();
-    let hours =date.getHours()<10 ? "0"+date.getHours(): date.getHours();
-    let minutes =date.getMinutes()<10 ? "0"+date.getMinutes(): date.getMinutes();
-    let seconds = date.getSeconds()<10 ? "0"+date.getSeconds(): date.getSeconds();
-
-	return date.getFullYear()+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+    let date = new Date(parseInt(timestamp) * 1000);
+    
+	return date.getFullYear()+"-"+properTimeSyntax(date.getMonth()+1)+"-"+properTimeSyntax(date.getDate())+" "+
+		   properTimeSyntax(date.getHours())+":"+properTimeSyntax(date.getMinutes())+":"+
+		   properTimeSyntax(date.getSeconds());
 
 }
 
@@ -96,3 +93,8 @@ function showError(error_details) {
 
 }
 
+// Additional Utility function to get proper number of digits for time
+// 00:00:00 format
+function properTimeSyntax(i){
+   return (i<10?'0'+i:i);
+}
