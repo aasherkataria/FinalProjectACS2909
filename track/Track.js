@@ -12,7 +12,8 @@ class Track
 		this.start_button = document.getElementById('start_button'); //added line
 		this.stop_button = document.getElementById('stop_button'); //added line
 		this.track_form = document.getElementById('track_form'); //added line
-
+		this.counter = document.getElementById("counter"); // added counter
+        let running = false; // used to track if the timer is running 
 
 		// Update the timer immediately, then trigger the callback every second to update the clock
 		this.updateTimer();
@@ -29,6 +30,7 @@ class Track
 	{
 		console.log('----- updateTimer -----');
 		// INSERT YOUR CODE HERE
+		if(running){}
 	}
 
 	/////////////////////////////////////////////
@@ -41,9 +43,12 @@ class Track
 	{
 		console.log('----- start -----', event);
 		// INSERT YOUR CODE HERE
+		// stores the timestamp at the event
+		running = true;
 		let d = new Date();
 		let timestamp = d.getTime();
 		localStorage.setItem("timer_timestamp",timestamp);
+		// hides the start button on click??
 		document.getElementById("start_button").addEventListener("click", function(){
 			document.getElementById("start_button").hidden = true
 		});
@@ -54,11 +59,12 @@ class Track
 	{
 		console.log('----- stop -----', event);
 		// INSERT YOUR CODE HERE
+		// variables to hold parameters for sending back to the api
 		let project_id = document.getElementById("project_id");
 		let description = document.getElementById("description");
 		let user = localStorage.getItem("user_id");
-		let start_time = localStorage.getItem("timer_timestamp");
-		let stop_time;
+		let start_time =convertSecondsToHoursMinutesSeconds(localStorage.getItem("timer_timestamp"));
+		let stop_time = convertSecondsToHoursMinutesSeconds(this.counter);
 	}
 
 
@@ -73,6 +79,8 @@ class Track
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
+		// calls the api to get the list of project entries
+		this.api.makeRequest("GET","/t-api/comapnies/{company_id}/projects",{},this.fillProjectsWithResponse);
 
 	}
 
