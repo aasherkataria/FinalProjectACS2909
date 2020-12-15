@@ -58,6 +58,8 @@ class TimeTrackerApi {
 	xhrRequestHandler(xhr, success_handler = false)
 	{
 		console.log('----- xhrRequestHandler -----', xhr.responseURL);
+
+			// INSERT YOUR CODE HERE
 			xhr.onreadystatechange = function (oEvent) {
 				if (xhr.readyState === 4) {
 					if (xhr.status === 200) {
@@ -68,7 +70,5 @@ class TimeTrackerApi {
 					}
 				}
 			}
-
-			// INSERT YOUR CODE HERE
 	}
 }
