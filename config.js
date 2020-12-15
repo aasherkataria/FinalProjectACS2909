@@ -88,7 +88,8 @@ function showError(error_details) {
 	// creating error box heading 
 	let errorBoxHeading = document.createElement('h1');
 	// storing error response code in error code
-	let errorCode = error_details.reponse.error_code;
+	let errorCode = error_details.reponse;
+	console.log(errorCode);
 	// storing error text in error name
 	let errorName = error_details.statusText;
 	// puuting each error inerrorBoxHeading 
