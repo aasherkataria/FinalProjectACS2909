@@ -41,6 +41,12 @@ class Track
 	{
 		console.log('----- start -----', event);
 		// INSERT YOUR CODE HERE
+		let d = new Date();
+		let timestamp = d.getTime();
+		localStorage.setItem("timer_timestamp",timestamp);
+		document.getElementById("start_button").addEventListener("click", function(){
+			document.getElementById("start_button").hidden = true
+		});
 
 	}
 
@@ -48,6 +54,11 @@ class Track
 	{
 		console.log('----- stop -----', event);
 		// INSERT YOUR CODE HERE
+		let project_id = document.getElementById("project_id");
+		let description = document.getElementById("description");
+		let user = localStorage.getItem("user_id");
+		let start_time = localStorage.getItem("timer_timestamp");
+		let stop_time;
 	}
 
 
