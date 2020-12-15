@@ -29,6 +29,12 @@ class Track
 	{
 		console.log('----- updateTimer -----');
 		// INSERT YOUR CODE HERE
+		let t = new Date();
+		let time= t.getTime();
+		do {
+			
+		  } while (t>0);
+
 	}
 
 	/////////////////////////////////////////////
@@ -73,6 +79,10 @@ class Track
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
+		const xhr = new XMLHttpRequest();
+		xhr.setRequestHeader('api-key', this.api_key);
+		xhr.responseType = 'json';
+		this.fillProjectsWithResponse(xhr.response);
 
 	}
 
