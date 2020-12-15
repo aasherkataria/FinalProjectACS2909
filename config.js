@@ -88,8 +88,6 @@ function showError(error_details) {
 	let errorName = error_details.error_message;
 	// displaying the error in the error box
 	errorBox.innerHTML = `ERROR: ${errorCode} : ${errorName}`;
-	// appending errorBoxHeading in error box 
-	errorBox.appendChild(errorBoxHeading);
 
 }
 
