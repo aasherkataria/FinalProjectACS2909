@@ -13,7 +13,7 @@ let api_url = 'https://acs2909.lusciousorange.com/t-api/';
  */
 let api_key_time_tracking = 'pr2kn37-qz6fgn0p27rjd5b8-7j1nfw3'; //added my api key because I am handling the TrackingApi part
 let api_key_reports = '';
-let api_key_projects = '';
+let api_key_projects = 'x3mzn47-13m4q0pjk5dzrwy9-5n4k8h4';
 
 /**
  *
@@ -60,7 +60,6 @@ function convertSecondsToHoursMinutesSeconds(seconds) {
 
 function convertTimestampToDateFormat(timestamp) {
 	console.log('----- convertTimestampToDateFormat -----', timestamp);
-	// INSERT YOUR CODE HERE
 	// Create a new JavaScript Date object based on the timestamp
 	// multiplied by 1000 so that the argument is in milliseconds, not seconds.
     let date = new Date(timestamp * 1000);
@@ -78,7 +77,6 @@ function convertTimestampToDateFormat(timestamp) {
 function showError(error_details) {
 
 	console.error('----- showError -----', error_details);
-	// INSERT YOUR CODE HERE
 	// creating error box of element type div
 	let errorBox = document.createElement('div');
 	// appending error box in div
