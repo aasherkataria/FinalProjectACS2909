@@ -42,28 +42,30 @@ class TimeTrackerApi {
 		 //create a request 
 		 xhr.open(method, url);
 		 //provide the api key to the xhr object
-		 xhr.setRequestHeader('api-key', this.api_key);
+		//  xhr.setRequestHeader('api-key', this.api_key);
 		 //set response type to json
 		 xhr.responseType = 'json';
 		 //send the request
 		 xhr.send();
-
-		//let the xhrRequestHandler handle onload request
+		 //let the xhrRequestHandler handle onload request
 		 this.xhrRequestHandler(xhr);
+
 
 	}
 
 	xhrRequestHandler(xhr, success_handler = false)
 	{
 		console.log('----- xhrRequestHandler -----', xhr.responseURL);
-		// INSERT YOUR CODE HERE
-		xhr.onload = () => {
-			console.log(xhr.response);
-			console.log(xhr.getAllResponseHeaders());
-			console.log(success_handler);
-		}
-		xhr.onerror = () => {
-			showError(xhr.response); //added the param response
-		}
+			xhr.onreadystatechange = function (oEvent) {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						console.log(xhr.response)
+					} else {
+						showError(xhr);
+					}
+				}
+			}
+
+			// INSERT YOUR CODE HERE
 	}
 }
