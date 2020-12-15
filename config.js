@@ -44,6 +44,7 @@ my_api = null;
 function saveUserID(profile_object) {
 	console.log('----- saveUserID -----', profile_object);
 	// INSERT YOUR CODE HERE
+	let user_id = localStorage.setItem("user",JSON.stringify(profile_object));
 }
 
 function convertSecondsToHoursMinutesSeconds(seconds) {
