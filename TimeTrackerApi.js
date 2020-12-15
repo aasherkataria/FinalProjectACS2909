@@ -63,7 +63,7 @@ class TimeTrackerApi {
 			xhr.onreadystatechange = function (oEvent) {
 				if (xhr.readyState === 4) {
 					if (xhr.status === 200) {
-						success_handler(xhr.response);
+						console.log(xhr.response);
 						
 					} else {
 						showError(xhr.response);
