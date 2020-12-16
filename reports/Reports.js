@@ -15,8 +15,8 @@ class Reports {
 		this.company_id = company_id;
 
 		// INSERT YOUR CODE HERE
-
-
+	this.loadProjects();		
+	this.loadUsers();
 	}
 
 	/////////////////////////////////////////////
@@ -30,7 +30,11 @@ class Reports {
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
-
+		const xhr = new XMLHttpRequest();
+		xhr.setRequestHeader('api-key', this.api_key);
+		xhr.responseType = 'json';
+		this.projects=xhr.response;
+		this.fillProjectsWithResponse(xhr.response);
 	}
 
 	fillProjectsWithResponse(xhr_response)
