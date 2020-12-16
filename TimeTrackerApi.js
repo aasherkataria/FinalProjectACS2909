@@ -16,7 +16,7 @@ class TimeTrackerApi {
 	}
 
 	/**
-	 * 
+	 * makeRequest method to create an XMLHTTPRequest
 	 * @param {string} method The method necessary to make the XMLHTTPRequest 
 	 * @param {string} path The path appended to the url  
 	 * @param {object} parameters An object of values that are passed for API calls that require additional information being passed.
@@ -45,30 +45,33 @@ class TimeTrackerApi {
 		 xhr.setRequestHeader('api-key', this.api_key);
 		 //set response type to json
 		 xhr.responseType = 'json';
-		 //let the xhrRequestHandler handle the errors and success for the request
-		 this.xhrRequestHandler(xhr);
 		 //send the request
 		 xhr.send();
-
-
-
-
+		 //let the xhrRequestHandler handle the errors and success for the request
+		 xhr.onload = () => {
+			if (xhr.status == 200) {
+				this.xhrRequestHandler(xhr, success_handler);
+			} else {
+				console.log('error!');
+			}
+		 };
 	}
 
+	/**
+	 * xhrRequestHandler method handles the requests made.
+	 * @param {object} xhr An an object containing the response from the XMLHTTPRequest
+	 * @callback success_handler A callback function that runs only when there is a successful connection 
+	 */
 	xhrRequestHandler(xhr, success_handler = false)
 	{
-		console.log('----- xhrRequestHandler -----', xhr.responseURL);
 
+		console.log('----- xhrRequestHandler -----', xhr.responseURL);
 			// INSERT YOUR CODE HERE
-			xhr.onreadystatechange = function (oEvent) {
-				if (xhr.readyState === 4) {
-					if (xhr.status === 200) {
-						console.log(xhr.response);
-						
-					} else {
-						showError(xhr.response);
-					}
+
+				if (xhr.response.error_message) {
+					showError(xhr.response);
+				} else {
+					success_handler(xhr.response);
 				}
-			}
 	}
 }

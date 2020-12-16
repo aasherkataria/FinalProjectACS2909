@@ -12,7 +12,7 @@ let api_url = 'https://acs2909.lusciousorange.com/t-api/';
  * The three API keys for the three segments of the project. You must replace these YOUR KEYS for your respective roles.
  */
 let api_key_time_tracking = 'pr2kn37-qz6fgn0p27rjd5b8-7j1nfw3'; //added my api key because I am handling the TrackingApi part
-let api_key_reports = '';
+let api_key_reports = 'nm6spj3-ztvkc16f3g5spdq9-sg8fvw8';
 let api_key_projects = 'x3mzn47-13m4q0pjk5dzrwy9-5n4k8h4';
 
 /**
@@ -88,8 +88,6 @@ function showError(error_details) {
 	let errorName = error_details.error_message;
 	// displaying the error in the error box
 	errorBox.innerHTML = `ERROR: ${errorCode} : ${errorName}`;
-	// appending errorBoxHeading in error box 
-	errorBox.appendChild(errorBoxHeading);
 
 }
 
