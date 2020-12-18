@@ -68,12 +68,18 @@ class Track
 	{
 		console.log('----- stop -----', event);
 		// INSERT YOUR CODE HERE
-		
-		let project_id = document.getElementById("project_id");
-		let description = document.getElementById("description");
-		let user = localStorage.getItem("user_id");
-		let start_time = localStorage.getItem("timer_timestamp");
-		let stop_time;
+		let projectIndex = document.getElementById("project_id").selectedIndex;
+
+		//create a time entry object
+		let time_entry = {
+			description : document.getElementById("description").value,
+			project_id : document.getElementsByTagName('option')[projectIndex].value,
+			user_id : localStorage.getItem("user_id"),
+			start_time : localStorage.getItem("timer_timestamp"),
+			end_time : convertTimestampToDateFormat(Date.now())
+		};
+
+		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.successHandlerTest);
 	}
 
 
@@ -111,5 +117,10 @@ class Track
 		//add the project to the list
 		projects.appendChild(projectName);
 
+	}
+
+	successHandlerTest(xhr_response) {
+		console.log('----- successHandlerTest -----', xhr_response);
+		console.log('the response:', xhr_response);
 	}
 }

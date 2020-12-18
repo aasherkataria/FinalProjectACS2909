@@ -29,6 +29,7 @@ class TimeTrackerApi {
 			{
 				'method' : method,
 				'path' : path,
+				'parameters' : parameters,
 				'handler': success_handler
 			});
 
@@ -52,7 +53,7 @@ class TimeTrackerApi {
 			if (xhr.status == 200) {
 				this.xhrRequestHandler(xhr, success_handler);
 			} else {
-				console.log('error!');
+				showError(xhr.response);
 			}
 		 };
 	}
