@@ -50,11 +50,11 @@ class Track
 	{
 		console.log('----- start -----', event);
 		// INSERT YOUR CODE HERE
-		//on click hide the start
-		console.log(event.target.classList.add('hide'));
 		let d = new Date();
 		let timestamp = d.getTime();
 		localStorage.setItem("timer_timestamp",timestamp);
+		//on click hide the start
+		console.log(event.target.classList.add('hide'));
 
 	}
 
@@ -62,6 +62,7 @@ class Track
 	{
 		console.log('----- stop -----', event);
 		// INSERT YOUR CODE HERE
+		
 		let project_id = document.getElementById("project_id");
 		let description = document.getElementById("description");
 		let user = localStorage.getItem("user_id");
