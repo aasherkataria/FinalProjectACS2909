@@ -16,6 +16,7 @@ class Projects {
 		this.loadProjects();
 
 		// INSERT YOUR CODE HERE
+		this.project_id = 1; //project id associated with each project 
 		this.new_project_button = document.getElementById('new_project_button');
 		this.new_project_button.addEventListener('click', this.showCreateForm);
 	}
@@ -41,18 +42,14 @@ class Projects {
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
 		// gets the list of projects as an object and for each object we call createProjectRow()
-		const projects = document.getElementByTagName('tbody');
-		const projectName = document.createElement('tr');
-		projectName.th=xhr_response.prject_id;
-		this.createProjectRow();
-
+		this.createProjectRow(xhr_response);
 	}
 
 	createProjectRow(project)
 	{
 		console.log('----- createProjectRow -----', project);
 		// INSERT YOUR CODE HERE
-
+		const 
 	}
 
 	/////////////////////////////////////////////
