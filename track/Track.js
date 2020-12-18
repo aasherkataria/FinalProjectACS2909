@@ -31,16 +31,12 @@ class Track
 	{
 		console.log('----- updateTimer -----');
 		// INSERT YOUR CODE HERE
-<<<<<<< HEAD
-		if(running){}
-=======
 		let t = new Date();
 		let time= t.getTime();
 		do {
 			
 		  } while (t>0);
 
->>>>>>> dc98daf78286e40c053f2754e1348d70feb810b1
 	}
 
 	/////////////////////////////////////////////
@@ -89,15 +85,10 @@ class Track
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
-<<<<<<< HEAD
-		// calls the api to get the list of project entries
-		this.api.makeRequest("GET","/t-api/comapnies/{company_id}/projects",{},this.fillProjectsWithResponse);
-=======
 		const xhr = new XMLHttpRequest();
 		xhr.setRequestHeader('api-key', this.api_key);
 		xhr.responseType = 'json';
 		this.fillProjectsWithResponse(xhr.response);
->>>>>>> dc98daf78286e40c053f2754e1348d70feb810b1
 
 	}
 
