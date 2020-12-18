@@ -49,7 +49,9 @@ class Projects {
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
 		// gets the list of projects as an object and for each object we call createProjectRow()
-		
+		const projects = document.getElementById('tbody');
+		const projectName = document.createElement('tr');
+		projectName.th=xhr_response.prject_id;
 		this.createProjectRow();
 
 	}
