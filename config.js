@@ -60,18 +60,36 @@ function convertSecondsToHoursMinutesSeconds(seconds) {
 	return ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + secs).slice(-2);
 }
 
+/**
+ * The todaysDate function takes 
+ * @param timestamp the number of seconds at which a project was saved
+ * converts it to todays date including the time in requested format.
+ */
 function convertTimestampToDateFormat(timestamp) {
 	console.log('----- convertTimestampToDateFormat -----', timestamp);
-	// Create a new JavaScript Date object based on the timestamp
-	// multiplied by 1000 so that the argument is in milliseconds, not seconds.
-    let date = new Date(parseInt(timestamp) * 1000);
-    
-	return date.getFullYear()+"-"+properTimeSyntax(date.getMonth()+1)+"-"+properTimeSyntax(date.getDate())+" "+
-		   properTimeSyntax(date.getHours())+":"+properTimeSyntax(date.getMinutes())+":"+
-		   properTimeSyntax(date.getSeconds());
+	const date = new Date(timestamp);
+    let mm = date.getMonth()+1; //+1 to handle -1 error
+    const dd = date.getDate();
+	const yyyy = date.getFullYear();
+	
+	const secs = date.getSeconds();
+	const mins = date.getMinutes();
+	const hrs = date.getHours();
+
+	// return the formatted date
+    return `${yyyy}-${mm}-${dd} ${properTimeSyntax(hrs)}:${properTimeSyntax(mins)}:${properTimeSyntax(secs)}`;
+	
+	// return date.getFullYear()+"-"+properTimeSyntax(date.getMonth()+1)+"-"+properTimeSyntax(date.getDate())+" "+
+	// 	   properTimeSyntax(date.getHours())+":"+properTimeSyntax(date.getMinutes())+":"+
+	// 	   properTimeSyntax(date.getSeconds());
 
 }
 
+/**
+ * The showError method takes
+ * @param error_details an object with the details pertaining to the error
+ * and displays it in the document body.
+ */
 function showError(error_details) {
 
 	console.error('----- showError -----', error_details);
@@ -96,3 +114,4 @@ function showError(error_details) {
 function properTimeSyntax(i){
    return (i<10?'0'+i:i);
 }
+

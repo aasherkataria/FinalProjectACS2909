@@ -46,16 +46,22 @@ class Track
 	//
 	/////////////////////////////////////////////
 
+	/**
+	 * The start method takes 
+	 * @param event the event causing it to start.
+	 * and starts the timer while saving the start timestamp to local storage.
+	 */
 	start(event)
 	{
 		console.log('----- start -----', event);
 		// INSERT YOUR CODE HERE
-		let d = new Date();
-		let timestamp = d.getTime();
-		localStorage.setItem("timer_timestamp",timestamp);
 		//on click hide the start
-		console.log(event.target.classList.add('hide'));
-
+		event.target.classList.add('hide');
+		//variable that holds the timestamp at which the start method was executed
+		let timestamp = convertTimestampToDateFormat(Date.now());
+		//add the timestamp to local storage
+		localStorage.setItem("timer_timestamp",timestamp);
+		console.log(localStorage.getItem("timer_timestamp"));
 	}
 
 	stop(event)
