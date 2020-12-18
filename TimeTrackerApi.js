@@ -29,7 +29,7 @@ class TimeTrackerApi {
 			{
 				'method' : method,
 				'path' : path,
-				'parameters' : parameters,
+				'parameters' : parameters, // remove after debugging
 				'handler': success_handler
 			});
 
