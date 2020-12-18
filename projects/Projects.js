@@ -14,7 +14,7 @@ class Projects {
 		this.company_id = company_id;
 
 		// INSERT YOUR CODE HERE
-
+		this.loadProjects();
 	}
 
 	/////////////////////////////////////////////
@@ -28,7 +28,7 @@ class Projects {
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
-
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
 	}
 
 	fillProjectsWithResponse(xhr_response)
