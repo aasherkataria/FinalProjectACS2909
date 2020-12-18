@@ -49,10 +49,15 @@ class Projects {
 	{
 		console.log('----- createProjectRow -----', project);
 		// INSERT YOUR CODE HERE
-		const id = document.createElement('th');
+		const Projectid = document.createElement('th');
+		const Companyid = document.createElement('th');
 		const title = document.createElement('th');
 		const NumEntries = document.createElement('th');
-		const Delete= document.createElement('th');
+		Projectid.value=xhr_response.project_id;
+		Companyid.value=xhr_response.company_id;
+		title.value=xhr_response.title;
+		NumEntries.value=xhr_response.NumEntries;
+		
 	}
 
 	/////////////////////////////////////////////
