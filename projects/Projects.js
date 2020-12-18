@@ -49,7 +49,10 @@ class Projects {
 	{
 		console.log('----- createProjectRow -----', project);
 		// INSERT YOUR CODE HERE
-		const 
+		const id = document.createElement('th');
+		const title = document.createElement('th');
+		const NumEntries = document.createElement('th');
+		const Delete= document.createElement('th');
 	}
 
 	/////////////////////////////////////////////
