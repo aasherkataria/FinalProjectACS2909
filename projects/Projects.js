@@ -12,7 +12,8 @@ class Projects {
 
 		this.api = api;
 		this.company_id = company_id;
-
+		// calling load projects
+		this.loadProjects();
 
 		// INSERT YOUR CODE HERE
 		
@@ -31,6 +32,15 @@ class Projects {
 		// INSERT YOUR CODE HERE
 
 		//call the TimeTrackerApi to handle api request.
+		let xhr = new XMLHttpRequest();
+
+		xhr.open('GET', `/t-api/companies/${this.company_id}/projects`);
+
+		xhr.responseType = 'json';
+
+		xhr.send();
+
+		this.fillProjectsWithResponse(xhr.response);
 
 	}
 
