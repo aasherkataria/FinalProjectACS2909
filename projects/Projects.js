@@ -13,8 +13,9 @@ class Projects {
 		this.api = api;
 		this.company_id = company_id;
 
+
 		// INSERT YOUR CODE HERE
-		this.loadProjects();
+		
 	}
 
 	/////////////////////////////////////////////
@@ -28,13 +29,18 @@ class Projects {
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
-		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
+
+		//call the TimeTrackerApi to handle api request.
+
 	}
 
 	fillProjectsWithResponse(xhr_response)
 	{
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
+		// gets the list of projects as an object and for each object we call createProjectRow()
+		
+		this.createProjectRow();
 
 	}
 
@@ -42,6 +48,7 @@ class Projects {
 	{
 		console.log('----- createProjectRow -----', project);
 		// INSERT YOUR CODE HERE
+
 	}
 
 	/////////////////////////////////////////////
