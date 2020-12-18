@@ -16,13 +16,20 @@ class Track
 
 		// Update the timer immediately, then trigger the callback every second to update the clock
 		this.updateTimer();
-		setInterval(this.updateTimer,1000);
+		setInterval(this.updateTimer, 1000);
 
 		this.api = api;
 		this.company_id = company_id;
 
 		// INSERT YOUR CODE HERE
+		//load existing projects
 		this.loadProjects();
+
+		console.log(this.start_button);
+
+		//keep track of clicks from start and stop buttons
+		this.start_button.addEventListener('click', this.start);
+		this.stop_button.addEventListener('click', this.stop);
 
 	}
 
@@ -30,11 +37,6 @@ class Track
 	{
 		console.log('----- updateTimer -----');
 		// INSERT YOUR CODE HERE
-		let t = new Date();
-		let time= t.getTime();
-		do {
-			
-		  } while (t>0);
 
 	}
 
@@ -48,12 +50,11 @@ class Track
 	{
 		console.log('----- start -----', event);
 		// INSERT YOUR CODE HERE
+		//on click hide the start
+		console.log(event.target.classList.add('hide'));
 		let d = new Date();
 		let timestamp = d.getTime();
 		localStorage.setItem("timer_timestamp",timestamp);
-		document.getElementById("start_button").addEventListener("click", function(){
-			document.getElementById("start_button").hidden = true
-		});
 
 	}
 
@@ -76,14 +77,17 @@ class Track
 	/////////////////////////////////////////////
 
 
+	/**
+	 * The loadProjects method loads the projects associated with
+	 * the company id and api key provided by the user.
+	 */
 	loadProjects()
 	{
 		console.log('----- loadProjects -----');
+		
 		// INSERT YOUR CODE HERE
-		const xhr = new XMLHttpRequest();
-		xhr.setRequestHeader('api-key', this.api_key);
-		xhr.responseType = 'json';
-		this.fillProjectsWithResponse(xhr.response);
+		//call the TimeTrackerApi to handle api request.
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
 
 	}
 
@@ -91,6 +95,14 @@ class Track
 	{
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
+		//target the select tag in the form "track_form"
+		const projects = document.getElementById('project_id');
+		//create an option tag with the values of project id and title
+		const projectName = document.createElement('option');
+		projectName.value = xhr_response.project_id;
+		projectName.innerHTML = xhr_response.title;
+		//add the project to the list
+		projects.appendChild(projectName);
 
 	}
 }

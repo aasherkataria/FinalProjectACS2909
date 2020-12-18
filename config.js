@@ -27,7 +27,7 @@ let my_api_key = 'pr2kn37-qz6fgn0p27rjd5b8-7j1nfw3'; //for workflow to work
  * @var {int} company_id
  * Your company ID, you must replace this is your value once you know your company ID
  */
-let company_id = 21;
+let company_id = '21';
 
 
 /**
