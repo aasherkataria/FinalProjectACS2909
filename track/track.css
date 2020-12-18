@@ -7,6 +7,9 @@
         bright-colour: #356915
 *********/
 
+/************************
+    Track Form Styles
+*************************/
 #timer_container a {
     text-align: center;
     font-size: 28px;
@@ -14,6 +17,9 @@
     margin-top: 10px;
     text-decoration: none;
     color: #fff;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 #timer_container a:hover {
@@ -28,6 +34,10 @@
     background-color: #990000;
 }
 
+.hide {
+    display: none !important;
+}
+
 #track_form {
     margin-bottom: 10px;
     background-color: #CDCDCD;
@@ -36,6 +46,7 @@
     display: flex;
     justify-content: space-around;
 }
+
 #counter{
     position: 10px;
     font-family: 'Courier New', Courier, monospace;
