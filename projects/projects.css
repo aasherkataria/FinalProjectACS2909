@@ -1,0 +1,28 @@
+#new_project_button{
+    font-size: 28px;
+    align-content: center;
+    padding: 10px;
+    background-color: #009900;
+    border: none;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+#new_project_button:hover{
+    opacity: 80%;
+
+}
+
+#projects_table{
+   width: 100%;
+
+}
+table th{
+    background-color: #CDCDCD;
+}
+table td{
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid  #CDCDCD;
+    text-align: center;
+    padding: 5px;
+}
