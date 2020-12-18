@@ -8,7 +8,7 @@ class Projects {
 	 */
 	constructor(api, company_id)
 	{
-		this.project_form = undefined;
+		this.project_form = document.getElementById('project_form');
 
 		this.api = api;
 		this.company_id = company_id;
@@ -16,7 +16,8 @@ class Projects {
 		this.loadProjects();
 
 		// INSERT YOUR CODE HERE
-		
+		this.new_project_button = document.getElementById('new_project_button');
+		this.new_project_button.addEventListener('click', this.showCreateForm);
 	}
 
 	/////////////////////////////////////////////
@@ -30,17 +31,8 @@ class Projects {
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
-
 		//call the TimeTrackerApi to handle api request.
-		let xhr = new XMLHttpRequest();
-
-		xhr.open('GET', `/t-api/companies/${this.company_id}/projects`);
-
-		xhr.responseType = 'json';
-
-		xhr.send();
-
-		this.fillProjectsWithResponse(xhr.response);
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
 
 	}
 
