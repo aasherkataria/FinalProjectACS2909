@@ -20,14 +20,12 @@ tbody
 {
     width: 100%;
 }
-tbody tr
-{
-    border-bottom: 1px solid  lightcyan;
-}
+
 tbody th
 {
     border-left: none;
     border-right: none;
+    border-bottom: 1px solid  lightcyan;
     padding: 5px;
     text-align: center;
 }
