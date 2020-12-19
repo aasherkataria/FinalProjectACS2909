@@ -36,26 +36,31 @@ class TimeTrackerApi {
 		
 		// INSERT YOUR CODE HERE
 		//create an xhr with the object provided
-		 const xhr = new XMLHttpRequest();
-		 //url object that has base url and path attached
-		 let url = new URL(path, this.base_url);
-		 console.log(url);
-		 //create a request 
-		 xhr.open(method, url);
-		 //provide the api key to the xhr object
-		 xhr.setRequestHeader('api-key', this.api_key);
-		 //set response type to json
-		 xhr.responseType = 'json';
-		 //send the request
-		 xhr.send();
-		 //let the xhrRequestHandler handle the errors and success for the request
-		 xhr.onload = () => {
+		const xhr = new XMLHttpRequest();
+		//url object that has base url and path attached
+		let url = new URL(path, this.base_url);
+		console.log(url);
+		//create a request 
+		xhr.open(method, url);
+		//process POST requests from objects to formData 
+		let form = new FormData();
+		for (let key in parameters) {
+			form.append(key, parameters[key]);
+		}
+		//provide the api key to the xhr object
+		xhr.setRequestHeader('api-key', this.api_key);
+		//set response type to json
+		xhr.responseType = 'json';
+		//send the request
+		xhr.send();
+		//let the xhrRequestHandler handle the errors and success for the request
+		xhr.onload = () => {
 			if (xhr.status == 200) {
 				this.xhrRequestHandler(xhr, success_handler);
 			} else {
 				showError(xhr.response);
 			}
-		 };
+		};
 	}
 
 	/**

@@ -41,23 +41,22 @@ class Projects {
 	{
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
-		// gets the list of projects as an object and for each object we call createProjectRow()
-		this.createProjectRow(xhr_response);
+		// gets the array of projects as objects and for each object we call createProjectRow()
+		// xhr_response.forEach(this.createProjectRow.bind(this));
 	}
 
 	createProjectRow(project)
 	{
 		console.log('----- createProjectRow -----', project);
 		// INSERT YOUR CODE HERE
-		const Projectid = document.createElement('th');
-		const Companyid = document.createElement('th');
+		const projectId = document.createElement('th');
+		const companyId = document.createElement('th');
 		const title = document.createElement('th');
-		const NumEntries = document.createElement('th');
-		Projectid.value=xhr_response.project_id;
-		Companyid.value=xhr_response.company_id;
-		title.value=xhr_response.title;
-		NumEntries.value=xhr_response.NumEntries;
-		
+		const numEntries = document.createElement('th');
+		projectId.value = xhr_response.project_id;
+		companyId.value = xhr_response.company_id;
+		title.value = xhr_response.title;
+		numEntries.value = xhr_response.num_entries;	
 	}
 
 	/////////////////////////////////////////////
@@ -70,15 +69,17 @@ class Projects {
 	{
 		console.log('----- showCreateForm -----', event);
 		// INSERT YOUR CODE HERE
-
+		//show the submit button with the updated value
+		const submit_btn = document.getElementById('submit_button');
+		submit_btn.value = "Create Project";
 	}
 
 	showEditForm(event)
 	{
 		console.log('----- showEditForm -----', event);
 		// INSERT YOUR CODE HERE
-
-
+		const submit_btn = document.getElementById('submit_button');
+		submit_btn.value = "Edit Project";
 	}
 
 	hideForm()
