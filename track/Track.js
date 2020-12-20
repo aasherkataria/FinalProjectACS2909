@@ -166,11 +166,8 @@ class Track
 	stopTimer(xhr_response) 
 	{
 		console.log('----- stopTimer -----', xhr_response);
-		if (xhr_response.error_message) {
-			showError(xhr_response); //show an error if the response failed
-		} else {
-			this.running = false; //reset the timer
-		}
+		this.running = false; //reset the timer
+		this.stop_button.classList.add('hide'); //hide the stop button
 	}
 
 }
