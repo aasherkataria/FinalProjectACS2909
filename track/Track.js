@@ -146,13 +146,20 @@ class Track
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
 		//target the select tag in the form "track_form"
-		const projects = document.getElementById('project_id');
-		//create an option tag with the values of project id and title
-		const projectName = document.createElement('option');
-		projectName.value = xhr_response.project_id;
-		projectName.innerHTML = xhr_response.title;
+		let projects = document.getElementById('project_id');
+	
+		
 		//add the project to the list
-		projects.appendChild(projectName);
+		for( let obj in xhr_response){
+			if(xhr_response.hasOwnProperty(obj)){
+				// create options with value of project id and title
+				let projectName = document.createElement('option');
+				projectName.value = xhr_response[obj].project_id;
+				projectName.innerHTML= xhr_response[obj].title;
+				projects.appendChild(projectName);
+			}
+		}
+		
 
 	}
 
