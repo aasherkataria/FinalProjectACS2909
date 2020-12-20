@@ -31,6 +31,12 @@ class Projects {
 	/////////////////////////////////////////////
 
 
+
+	/**
+	 * The loadProjects method makes the api call to load the 
+	 * projects associated with the company id 
+	 */
+
 	loadProjects()
 	{
 		console.log('----- loadProjects -----');
@@ -38,6 +44,14 @@ class Projects {
 		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse.bind(this));
 
 	}
+
+	
+	/**
+	 * The fillprojectswithresponse method get the objects from the 
+	 * xhr response and then for each object inside the response it 
+	 * calls project row to fill the row in the interface
+	 * @param xhr_response we get from the makeRequest api call if successful
+	 */
 
 	fillProjectsWithResponse(xhr_response)
 	{
@@ -50,6 +64,10 @@ class Projects {
 		}
 	}
 
+	/**
+	 * the project row creates and appends the row in the table
+	 * @param project object which has the requried properties to append to a row
+	 */
 	createProjectRow(project)
 	{
 		console.log('----- createProjectRow -----', project);
@@ -161,8 +179,10 @@ class Projects {
 		// gets project id and the title 
 		let projectFormID = document.getElementById("form_project_id").value.replace("project_","");
 		let titleParam = document.getElementById("title");
+
 		// prevents refresh of page
 		event.preventDefault();
+
 		// checks and exceutes valid api calls
 		if(projectFormID==0){
 			api.makeRequest("POST","/t-api/projects/",{title : titleParam.value},this.createNewProject.bind(this));
@@ -207,9 +227,10 @@ class Projects {
 	handleDelete(event)
 	{
 		console.log('----- handleDelete -----', event);
-		// how to get project id from row the button was clicked from
+		// get project id from row the button was clicked from
 		let projectIDfromEvent = event.srcElement.parentNode.parentNode;
 		let id = projectIDfromEvent.getAttribute("id").replace("project_","");
+
 		// delete request
 		api.makeRequest("DELETE","/t-api/projects/"+id,{},this.updateFromDelete);
 	}
@@ -217,7 +238,7 @@ class Projects {
 	updateFromDelete(xhr_response)
 	{
 		console.log('----- updateFromDelete -----', xhr_response);
-		// updates the table
+		// updates the interface
 		let deletedID = xhr_response.project_id;
 		let tableRow = document.getElementById("project_"+deletedID);
 		let tbody = document.getElementById("projects_table").getElementsByTagName("tbody")[0];
