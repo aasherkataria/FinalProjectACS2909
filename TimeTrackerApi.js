@@ -49,6 +49,9 @@ class TimeTrackerApi {
 		}
 		//provide the api key to the xhr object
 		xhr.setRequestHeader('api-key', this.api_key);
+		// if (method === 'POST') {
+		// 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		// }
 		//set response type to json
 		xhr.responseType = 'json';
 		//send the request
