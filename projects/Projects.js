@@ -165,7 +165,7 @@ class Projects {
 			
 		}
 		else {
-			api.makeRequest("PATCH","/t-api/projects/"+ projectFormID,{title : titleParam.value},(event) => {this.updateProject(event)});
+			api.makeRequest("PATCH","/t-api/projects/"+`${projectFormID}`,{title : titleParam.value},(event) => {this.updateProject(event)});
 		}
 
 
@@ -189,9 +189,8 @@ class Projects {
 	{
 		console.log('----- updateProject -----', xhr_response);
 		// INSERT YOUR CODE HERE
-		let titleRow = document.getElementById(xhr_response.project_id).childNodes[1];
-		console.log(titleRow);
-		
+		let titleRow = document.getElementById(xhr_response.project_id).childNodes[1].childNodes[0];
+		titleRow.text = xhr_response.title;
 		this.hideForm();
 	}
 
