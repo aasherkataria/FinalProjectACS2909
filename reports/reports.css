@@ -1,0 +1,31 @@
+#reports_filter_form
+{
+    background-color: lightcyan;
+    color:brown;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#results
+{
+    width: 100%;
+
+}
+#results th
+{
+    background-color: lightcyan;
+}
+tbody
+{
+    width: 100%;
+}
+
+tbody th
+{
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid  lightcyan;
+    padding: 5px;
+    text-align: center;
+}

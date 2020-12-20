@@ -12,12 +12,15 @@ class Track
 		this.start_button = document.getElementById('start_button'); //added line
 		this.stop_button = document.getElementById('stop_button'); //added line
 		this.track_form = document.getElementById('track_form'); //added line
-		this.counter = document.getElementById("counter"); // added counter
-        let running = false; // used to track if the timer is running 
+		this.counter = document.getElementById('counter'); // added counter
+		this.seconds = 0;
+		this.minutes = 0;
+		this.hours = 0;
+        this.running = false; // used to track if the timer is running 
 
 		// Update the timer immediately, then trigger the callback every second to update the clock
 		this.updateTimer();
-		setInterval(this.updateTimer, 1000);
+		setInterval(this.updateTimer.bind(this), 1000);
 
 		this.api = api;
 		this.company_id = company_id;
@@ -26,10 +29,8 @@ class Track
 		//load existing projects
 		this.loadProjects();
 
-		console.log(this.start_button);
-
 		//keep track of clicks from start and stop buttons
-		this.start_button.addEventListener('click', this.start);
+		this.start_button.addEventListener('click', (event) => {this.start(event)});
 		this.stop_button.addEventListener('click', this.stop);
 
 	}
@@ -38,7 +39,22 @@ class Track
 	{
 		console.log('----- updateTimer -----');
 		// INSERT YOUR CODE HERE
+		if (this.running) {
+			this.seconds++;
+			if (this.seconds >= 60) { //if seconds reach 60 add 1 to the minute
+				this.minutes++; 
+				this.seconds = 0;
+			} else if (this.minutes >= 60) { //if minutes reach 60 add on to the hour
+				this.hours++;
+				this.minutes = 0;
+			}
+		} else {
+			this.seconds = 0;
+		}
 
+		// console.log(this.seconds++ ? running : this.seconds = 0);
+		//append clock to counter div
+		this.counter.textContent = `${this.hours}:${this.minutes < 10 ? '0' : ''}${this.minutes}:${this.seconds < 10 ? '0' : ''}${this.seconds}`;
 	}
 
 	/////////////////////////////////////////////
@@ -63,6 +79,8 @@ class Track
 		//add the timestamp to local storage
 		localStorage.setItem("timer_timestamp",timestamp);
 		console.log(localStorage.getItem("timer_timestamp"));
+		//
+		this.running = true;
 	}
 
 	stop(event)
@@ -80,7 +98,19 @@ class Track
 			end_time : convertTimestampToDateFormat(Date.now())
 		};
 
-		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.successHandlerTest);
+		// let params = 'description=testDesc&project_id=1&user_id=1&start_time=00:00:00&end_time=01:00:00';
+		//process POST requests from objects to formData 
+		let formData = new FormData();
+		// for (let key in time_entry) {
+		// 	console.log(key, time_entry[key]);
+		// }
+
+		formData.append('description', 'testDesc');
+
+		console.log(formData.entries());
+
+		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.stopTimer.bind(this));
+		console.log(this.stopTimer(time_entry));
 	}
 
 
@@ -103,6 +133,12 @@ class Track
 		//call the TimeTrackerApi to handle api request.
 		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
 
+		// //TEST CODE!
+		// console.log('----- push TestProject -----');
+		// let TestProject = { message : document.getElementById('testProject')};
+
+		// api.makeRequest('POST', "/t-api/projects/", TestProject, this.successHandlerTest);
+
 	}
 
 	fillProjectsWithResponse(xhr_response)
@@ -120,8 +156,14 @@ class Track
 
 	}
 
-	successHandlerTest(xhr_response) {
-		console.log('----- successHandlerTest -----', xhr_response);
-		console.log('the response:', xhr_response);
+	stopTimer(xhr_response) 
+	{
+		console.log('----- stopTimer -----', xhr_response);
+		if (xhr_response.error_message) {
+			showError(xhr_response); //show an error if the response failed
+		} else {
+			this.running = false; //reset the timer
+		}
 	}
+
 }
