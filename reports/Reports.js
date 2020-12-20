@@ -40,6 +40,7 @@ class Reports {
 				let projectName = document.createElement('option');
 				projectName.value =xhr_response[obj].project_id;
 				projectName.innerHTML = xhr_response[obj].title;
+				this.projects=xhr_response[obj];
 				projects.appendChild(projectName);
 			}
 		}
@@ -76,10 +77,11 @@ class Reports {
 
 		for( let obj in xhr_response){
 			if(xhr_response.hasOwnProperty(obj)){
-			s	// create options with value of project id and title
+				// create options with value of project id and title
 				const userName = document.createElement('option');
 				userName.value = xhr_response[obj].project_id;
 				userName.innerHTML = xhr_response[obj].title;
+				this.users=xhr_response[obj];
 				users.appendChild(userName);
 			}
 		}
