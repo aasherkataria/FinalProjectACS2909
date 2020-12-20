@@ -31,6 +31,8 @@ class Reports {
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
 		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
+		if(this.projects!= null){
+		this.loadTimeEntries();}
 	}
 
 	fillProjectsWithResponse(xhr_response)
@@ -71,6 +73,10 @@ class Reports {
 		console.log('----- loadUsers -----');
 		// INSERT YOUR CODE HERE
 		api.makeRequest('GET', `/t-api/companies/${this.company_id}/users`, {}, this.fillProjectsWithResponse);
+		if(this.users !=null)
+		{
+		this.loadTimeEntries();
+	}
 	}
 
 	fillUsersWithResponse(xhr_response)
@@ -109,6 +115,7 @@ class Reports {
 	{
 		console.log('----- loadTimeEntries -----');
 		// INSERT YOUR CODE HERE
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/entries`, {}, this.fillTimeEntriesWithResponse);
 
 	}
 
