@@ -26,8 +26,10 @@ class Reports {
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
 		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse.bind(this));
-		if(this.projects!= null){
-		this.loadTimeEntries();}
+		if(this.projects!= null)
+		{
+		this.loadTimeEntries();
+	}
 
 	}
 
@@ -112,7 +114,7 @@ class Reports {
 	{
 		console.log('----- loadTimeEntries -----');
 		// INSERT YOUR CODE HERE
-		api.makeRequest('GET', `/t-api/companies/${this.company_id}/entries`, {}, this.fillTimeEntriesWithResponse).bind(this);
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/entries`, {}, this.fillTimeEntriesWithResponse.bind(this);
 
 	}
 
