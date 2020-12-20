@@ -88,7 +88,7 @@ class Projects {
 		
 		// appending to row
 		let tr =document.createElement("tr");
-		tr.setAttribute("id",project.project_id); // sets id for the row "project_"
+		tr.setAttribute("id","project_"+project.project_id); // sets id for the row ""
 		tr.appendChild(projectId);
 		tr.appendChild(titleLink);
 		tr.appendChild(numEntries);
@@ -156,7 +156,7 @@ class Projects {
 	{
 		console.log('----- handleFormSubmit -----', event);
 		// INSERT YOUR CODE HERE
-		let projectFormID = document.getElementById("form_project_id").value;
+		let projectFormID = document.getElementById("form_project_id").value.replace("project_","");
 		let titleParam = document.getElementById("title");
 		event.preventDefault();
 		
@@ -189,7 +189,7 @@ class Projects {
 	{
 		console.log('----- updateProject -----', xhr_response);
 		// INSERT YOUR CODE HERE
-		let titleRow = document.getElementById(xhr_response.project_id).childNodes[1].childNodes[0];
+		let titleRow = document.getElementById("project_"+xhr_response.project_id).childNodes[1].childNodes[0];
 		titleRow.text = xhr_response.title;
 		this.hideForm();
 	}
@@ -206,7 +206,7 @@ class Projects {
 		// INSERT YOUR CODE HERE
 		// how to get project id from when the delete button is clicked?
 		let projectIDfromEvent = event.srcElement.parentNode.parentNode;
-		let id = projectIDfromEvent.getAttribute("id");
+		let id = projectIDfromEvent.getAttribute("id").replace("project_","");
 		api.makeRequest("DELETE","/t-api/projects/"+id,{},this.updateFromDelete);
 	}
 
@@ -215,7 +215,7 @@ class Projects {
 		console.log('----- updateFromDelete -----', xhr_response);
 		// INSERT YOUR CODE HERE
 		let deletedID = xhr_response.project_id;
-		let tableRow = document.getElementById(deletedID);
+		let tableRow = document.getElementById("project_"+deletedID);
 		let tbody = document.getElementById("projects_table").getElementsByTagName("tbody")[0];
 		tbody.removeChild(tableRow);
 	}
