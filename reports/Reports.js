@@ -7,16 +7,11 @@ class Reports {
 	 */
 	constructor(api, company_id)
 	{
-		// Must filled via the API calls
-		this.projects = undefined;
-		this.users = undefined;
-
 		this.api = api;
 		this.company_id = company_id;
 
-		// INSERT YOUR CODE HERE
-	this.loadProjects();		
-	this.loadUsers();
+		this.loadProjects();		
+		this.loadUsers();
 	}
 
 	/////////////////////////////////////////////
@@ -30,9 +25,10 @@ class Reports {
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
-		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse.bind(this));
 		if(this.projects!= null){
 		this.loadTimeEntries();}
+
 	}
 
 	fillProjectsWithResponse(xhr_response)
@@ -72,7 +68,8 @@ class Reports {
 	{
 		console.log('----- loadUsers -----');
 		// INSERT YOUR CODE HERE
-		api.makeRequest('GET', `/t-api/companies/${this.company_id}/users`, {}, this.fillProjectsWithResponse);
+
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/users`, {}, this.fillProjectsWithResponse).bind(this);
 		if(this.users !=null)
 		{
 		this.loadTimeEntries();
