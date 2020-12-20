@@ -49,7 +49,10 @@ class Track
 				this.minutes = 0;
 			}
 		} else {
+			//reset the timer
 			this.seconds = 0;
+			this.minutes = 0;
+			this.hours = 0;
 		}
 
 		// console.log(this.seconds++ ? running : this.seconds = 0);

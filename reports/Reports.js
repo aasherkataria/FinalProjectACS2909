@@ -71,11 +71,11 @@ class Reports {
 		console.log('----- loadUsers -----');
 		// INSERT YOUR CODE HERE
 
-		api.makeRequest('GET', `/t-api/companies/${this.company_id}/users`, {}, this.fillProjectsWithResponse).bind(this);
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/users`, {}, this.fillProjectsWithResponse.bind(this));
 		if(this.users !=null)
 		{
-		this.loadTimeEntries();
-	}
+			this.loadTimeEntries();
+		}
 	}
 
 	fillUsersWithResponse(xhr_response)
@@ -114,7 +114,7 @@ class Reports {
 	{
 		console.log('----- loadTimeEntries -----');
 		// INSERT YOUR CODE HERE
-		api.makeRequest('GET', `/t-api/companies/${this.company_id}/entries`, {}, this.fillTimeEntriesWithResponse.bind(this);
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/entries`, {}, this.fillTimeEntriesWithResponse.bind(this));
 
 	}
 
