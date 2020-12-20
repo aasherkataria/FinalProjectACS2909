@@ -30,17 +30,22 @@ class Reports {
 	{
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
-		const xhr = new XMLHttpRequest();
-		xhr.setRequestHeader('api-key', this.api_key);
-		xhr.responseType = 'json';
-		this.projects=xhr.response;
-		this.fillProjectsWithResponse(xhr.response);
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
 	}
 
 	fillProjectsWithResponse(xhr_response)
 	{
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
+		const projects = document.getElementById('project_id');
+		const projectName = document.createElement('option');
+		xhr_response.forEach(myFunction);
+		function myFunction(item)
+		{
+			projectName.value = item.project_id;
+			projectName.innerHTML = item.title;
+			projects.appendChild(projectName);
+		}
 	}
 
 	handleProjectChange(event)
@@ -62,13 +67,22 @@ class Reports {
 	{
 		console.log('----- loadUsers -----');
 		// INSERT YOUR CODE HERE
-
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/users`, {}, this.fillProjectsWithResponse);
 	}
 
 	fillUsersWithResponse(xhr_response)
 	{
 		console.log('----- fillUsersWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
+		const users = document.getElementById('user_id');
+		const userName = document.createElement('option');
+		xhr_response.forEach(myFunction);
+		function myFunction(item)
+		{	
+			userName.value = item.project_id;
+			userName.innerHTML = item.title;
+			users.appendChild(userName);
+		}
 	}
 
 	handleUserChange(event)
