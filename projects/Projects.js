@@ -18,10 +18,10 @@ class Projects {
 
 		// button for new project
 		this.new_project_button = document.getElementById('new_project_button');
-		this.new_project_button.addEventListener('click',(event) => {this.showCreateForm(event)});
+		this.new_project_button.addEventListener('click',this.showCreateForm.bind(this));
 		// submit button 
 		this.submit_button = document.getElementById('submit_button');
-		this.submit_button.addEventListener("click",(event) => {this.handleFormSubmit(event)});
+		this.submit_button.addEventListener("click",this.handleFormSubmit.bind(this));
 	}
 
 	/////////////////////////////////////////////
@@ -65,9 +65,9 @@ class Projects {
 		let titleLink = document.createElement("td");
 		let titleTag = document.createElement('a');
 		titleTag.setAttribute("href","#");
-		titleTag.innerText = project.title;
+		titleTag.textContent= project.title;
 		titleTag.setAttribute("class","edit_link");
-		titleTag.addEventListener("click",(event) => {this.showEditForm(event)});
+		titleTag.addEventListener("click",this.showEditForm.bind(this));
 		titleLink.appendChild(titleTag);
 
 		//creating table cell for entries
@@ -79,9 +79,9 @@ class Projects {
 		let deleteLink = document.createElement("td");
 		let deleteTag = document.createElement('a');
 		deleteTag.setAttribute("href","#");
-		deleteTag.innerText = "Delete";
+		deleteTag.textContent = "Delete";
 		deleteTag.setAttribute("class","delete_link");
-		deleteTag.addEventListener("click",(event) => {this.handleDelete(event)});
+		deleteTag.addEventListener("click",this.handleDelete.bind(this));
 		deleteLink.appendChild(deleteTag);
 		
 		// appending every td to a tablerow and then to the tbody
@@ -165,11 +165,11 @@ class Projects {
 		event.preventDefault();
 		// checks and exceutes valid api calls
 		if(projectFormID==0){
-			api.makeRequest("POST","/t-api/projects/",{title : titleParam.value},(event) => {this.createNewProject(event)});
+			api.makeRequest("POST","/t-api/projects/",{title : titleParam.value},this.createNewProject.bind(this));
 			
 		}
 		else {
-			api.makeRequest("PATCH","/t-api/projects/"+`${projectFormID}`,{title : titleParam.value},(event) => {this.updateProject(event)});
+			api.makeRequest("PATCH","/t-api/projects/"+`${projectFormID}`,{title : titleParam.value},this.updateProject.bind(this));
 		}
 
 

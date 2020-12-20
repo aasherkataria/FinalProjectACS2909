@@ -31,7 +31,7 @@ class Track
 
 		//keep track of clicks from start and stop buttons
 		this.start_button.addEventListener('click', (event) => {this.start(event)});
-		this.stop_button.addEventListener('click', this.stop);
+		this.stop_button.addEventListener('click', this.stop.bind(this));
 
 	}
 
@@ -100,17 +100,17 @@ class Track
 
 		// let params = 'description=testDesc&project_id=1&user_id=1&start_time=00:00:00&end_time=01:00:00';
 		//process POST requests from objects to formData 
-		let formData = new FormData();
+		//let formData = new FormData();
 		// for (let key in time_entry) {
 		// 	console.log(key, time_entry[key]);
 		// }
 
-		formData.append('description', 'testDesc');
+		//formData.append('description', 'testDesc');
 
-		console.log(formData.entries());
+		//console.log(formData.entries());
 
-		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.stopTimer);
-		console.log(this.stopTimer(time_entry));
+		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.stopTimer.bind(this));
+		
 	}
 
 
@@ -131,7 +131,7 @@ class Track
 		
 		// INSERT YOUR CODE HERE
 		//call the TimeTrackerApi to handle api request.
-		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse.bind(this));
 
 		// //TEST CODE!
 		// console.log('----- push TestProject -----');
