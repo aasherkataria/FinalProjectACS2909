@@ -13,34 +13,16 @@ class Projects {
 		this.api = api;
 		this.company_id = company_id;
 		// calling load projects
-		//this.loadProjects();
-
-		let id1 = {
-			project_id : 1,
-			company_id :21,
-			title : "1st object",
-			num_entries : "3",
-		};
-		let id2 = {
-			project_id : 123,
-			company_id :21,
-			title : "2st object",
-			num_entries : "4",
-		};
-		let arr = [];
-		arr[0] = id1;
-		arr[1] = id2;
-
-		this.fillProjectsWithResponse(arr);
+		this.loadProjects();
 		this.hideForm();
         // INSERT YOUR CODE HERE
 		//this.project_id = 1; //project id associated with each project 
 		let self = this;
 		this.new_project_button = document.getElementById('new_project_button');
-		this.new_project_button.addEventListener('click', this.showCreateForm);
+		this.new_project_button.addEventListener('click',(event) => {this.showCreateForm(event)});
 		// submit button 
 		let submit_button = document.getElementById('submit_button');
-		submit_button.addEventListener("click",this.handleFormSubmit);
+		submit_button.addEventListener("click",(event) => {this.handleFormSubmit(event)});
 	}
 
 	/////////////////////////////////////////////
@@ -55,7 +37,7 @@ class Projects {
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
 		//call the TimeTrackerApi to handle api request.
-		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse);
+		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse.bind(this));
 
 	}
 
@@ -65,7 +47,12 @@ class Projects {
 		// INSERT YOUR CODE HERE
 
 		// gets the array of projects as objects and for each object we call createProjectRow()
-		 xhr_response.forEach(this.createProjectRow.bind(this));
+		//xhr_response.forEach(this.createProjectRow.bind(this));
+		for( let obj in xhr_response){
+			if(xhr_response.hasOwnProperty(obj)){
+				this.createProjectRow(xhr_response[obj]);
+			}
+		}
 	}
 
 	createProjectRow(project)
@@ -83,7 +70,7 @@ class Projects {
 		titleTag.setAttribute("href","#");
 		titleTag.innerText = project.title;
 		titleTag.setAttribute("class","edit_link");
-		titleTag.addEventListener("click",this.showEditForm);
+		titleTag.addEventListener("click",(event) => {this.showEditForm(event)});
 		titleLink.appendChild(titleTag);
 		//creating table cell for entries
 		let numEntries = document.createElement('td');
@@ -95,13 +82,13 @@ class Projects {
 		deleteTag.setAttribute("href","#");
 		deleteTag.innerText = "Delete";
 		deleteTag.setAttribute("class","delete_link");
-		deleteTag.addEventListener("click",this.handleDelete);
+		deleteTag.addEventListener("click",(event) => {this.handleDelete(event)});
 		deleteLink.appendChild(deleteTag);
 
 		
 		// appending to row
 		let tr =document.createElement("tr");
-		tr.setAttribute("id",project.project_id); // sets id for the row
+		tr.setAttribute("id",project.project_id); // sets id for the row "project_"
 		tr.appendChild(projectId);
 		tr.appendChild(titleLink);
 		tr.appendChild(numEntries);
@@ -126,6 +113,9 @@ class Projects {
 		// setting project id to 0 for newer project
 		let projectFormID = document.getElementById("form_project_id");
 		projectFormID.value = 0;
+		// empty value for input title 
+		let titleParam = document.getElementById("title");
+		titleParam.value="";
 		//show the submit button with the updated value
 		const submit_btn = document.getElementById('submit_button');
 		submit_btn.value = "Create Project";
@@ -142,6 +132,12 @@ class Projects {
 		let projectIDfromEvent = event.srcElement.parentNode.parentNode;
 		let id = projectIDfromEvent.getAttribute("id");
 		projectFormID.value =id;
+		console.log(projectFormID);
+		// prefilling title value in the input box
+		let titleParam = document.getElementById("title");
+		let anchor = event.srcElement.text;
+		titleParam.value=anchor;
+		//titleParam.value=;
 		// edit project button
 		const submit_btn = document.getElementById('submit_button');
 		submit_btn.value = "Edit Project";
@@ -160,15 +156,16 @@ class Projects {
 	{
 		console.log('----- handleFormSubmit -----', event);
 		// INSERT YOUR CODE HERE
-		let projectFormID = document.getElementById("form_project_id");
+		let projectFormID = document.getElementById("form_project_id").value;
 		let titleParam = document.getElementById("title");
 		event.preventDefault();
-		if(projectFormID.value==0){
-			api.makeRequest("POST","/t-api/projects/",{title : titleParam.value},this.createNewProject);
+		
+		if(projectFormID==0){
+			api.makeRequest("POST","/t-api/projects/",{title : titleParam.value},(event) => {this.createNewProject(event)});
 			
 		}
 		else {
-			api.makeRequest("PATCH","/t-api/projects/"+ projectFormID,{"title": "newValue"},updateProject);
+			api.makeRequest("PATCH","/t-api/projects/"+ projectFormID,{title : titleParam.value},(event) => {this.updateProject(event)});
 		}
 
 
@@ -184,12 +181,18 @@ class Projects {
 	{
 		console.log('----- createNewProject -----', xhr_response);
 		// INSERT YOUR CODE HERE
+		this.createProjectRow(xhr_response);
+		this.hideForm();
 	}
 
 	updateProject(xhr_response)
 	{
 		console.log('----- updateProject -----', xhr_response);
 		// INSERT YOUR CODE HERE
+		let titleRow = document.getElementById(xhr_response.project_id).childNodes[1];
+		console.log(titleRow);
+		
+		this.hideForm();
 	}
 
 	/////////////////////////////////////////////
