@@ -38,13 +38,15 @@ class Reports {
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
 		const projects = document.getElementById('project_id');
-		const projectName = document.createElement('option');
-		xhr_response.forEach(myFunction);
-		function myFunction(item)
-		{
-			projectName.value = item.project_id;
-			projectName.innerHTML = item.title;
-			projects.appendChild(projectName);
+		//add the project to the list
+		for( let obj in xhr_response){
+			if(xhr_response.hasOwnProperty(obj)){
+				// create options with value of project id and title
+				let projectName = document.createElement('option');
+				projectName.value =xhr_response[obj].project_id;
+				projectName.innerHTML = xhr_response[obj].title;
+				projects.appendChild(projectName);
+			}
 		}
 	}
 
@@ -76,12 +78,15 @@ class Reports {
 		// INSERT YOUR CODE HERE
 		const users = document.getElementById('user_id');
 		const userName = document.createElement('option');
-		xhr_response.forEach(myFunction);
-		function myFunction(item)
-		{	
-			userName.value = item.project_id;
-			userName.innerHTML = item.title;
-			users.appendChild(userName);
+
+		for( let obj in xhr_response){
+			if(xhr_response.hasOwnProperty(obj)){
+			s	// create options with value of project id and title
+				const userName = document.createElement('option');
+				userName.value = xhr_response[obj].project_id;
+				userName.innerHTML = xhr_response[obj].title;
+				users.appendChild(userName);
+			}
 		}
 	}
 
