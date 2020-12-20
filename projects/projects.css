@@ -1,3 +1,6 @@
+/*
+    NEW PROJECT BUTTON
+*/
 #new_project_button{
     font-size: 28px;
     align-content: center;
@@ -12,17 +15,36 @@
 
 }
 
+/*
+    PROJECTS
+*/
 #projects_table{
    width: 100%;
-
 }
-table th{
+#projects_table th{
     background-color: #CDCDCD;
 }
-table td{
+#projects_table td{
     border-left: none;
     border-right: none;
     border-bottom: 1px solid  #CDCDCD;
     text-align: center;
     padding: 5px;
+}
+/*
+    FORM STYLING
+*/
+#project_form{
+    width: 300px;
+    margin: auto;
+    padding: 10px;
+    background-color: #343434;
+    
+}
+
+#submit_button{
+    background-color: #CDCDCD;
+    border: none;
+    align-content: center;
+    color: #343434;
 }
