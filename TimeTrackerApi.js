@@ -43,19 +43,25 @@ class TimeTrackerApi {
 		//create a request 
 		xhr.open(method, url);
 		//process POST requests from objects to formData 
-		let form = new FormData();
+		let formDataPost = new FormData();
 		for (let key in parameters) {
-			form.append(key, parameters[key]);
+			formDataPost.append(key, parameters[key]);
 		}
 		//provide the api key to the xhr object
 		xhr.setRequestHeader('api-key', this.api_key);
 		// if (method === 'POST') {
-		// 	xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		
 		// }
 		//set response type to json
 		xhr.responseType = 'json';
 		//send the request
-		xhr.send();
+		if (method === 'POST'){
+			//xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			xhr.send(formDataPost);
+		}
+		else {
+			xhr.send();
+		}
 		//let the xhrRequestHandler handle the errors and success for the request
 		xhr.onload = () => {
 			if (xhr.status == 200) {

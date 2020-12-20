@@ -11,9 +11,9 @@ let api_url = 'https://acs2909.lusciousorange.com/t-api/';
  * @type {string}
  * The three API keys for the three segments of the project. You must replace these YOUR KEYS for your respective roles.
  */
-let api_key_time_tracking = 'pr2kn37-qz6fgn0p27rjd5b8-7j1nfw3'; //added my api key because I am handling the TrackingApi part
-let api_key_reports = 'nm6spj3-ztvkc16f3g5spdq9-sg8fvw8';
-let api_key_projects = 'x3mzn47-13m4q0pjk5dzrwy9-5n4k8h4';
+let api_key_time_tracking = 'pr2kn37-qz6fgn0p27rjd5b8-7j1nfw3'; // Aasher Kataria - Track
+let api_key_reports = 'nm6spj3-ztvkc16f3g5spdq9-sg8fvw8';  // Jaskirat Singh - Reports
+let api_key_projects = 'x3mzn47-13m4q0pjk5dzrwy9-5n4k8h4'; // Navkaran Singh - Projects
 
 /**
  *

@@ -109,7 +109,7 @@ class Track
 
 		console.log(formData.entries());
 
-		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.stopTimer.bind(this));
+		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.stopTimer);
 		console.log(this.stopTimer(time_entry));
 	}
 
