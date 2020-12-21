@@ -66,20 +66,29 @@ class Reports {
 		// INSERT YOUR CODE HERE
 		let results = document.getElementById('results').children[1]; //grab the old tbody element
 		let resultsTable = document.getElementById('results');
-		console.log(this.sortedArray);
-		let selectArray = event.target.selectedIndex;
-		let selectedValue = event.target.children[selectArray].firstChild.data;
-		console.log(selectArray);
-		console.log(selectedValue);
+		// console.log(this.sortedArray);
+
+		// the selected value in the array of the select tag
+		let selectedValue = event.target.selectedIndex; 
+		// Strings associated with each option in the 
+		let selectedData = event.target.children[selectedValue].firstChild.data;
+
+		// console.log(selectArray);
+		// console.log(selectedValue);
+		
+		// create a new array matching the corresponding selections 
 		let results_array;
 
-		results_array = this.sortedArray.filter( item => item.title.includes(selectedValue));
+		results_array = this.sortedArray.filter( item => item.title.includes(selectedData));
 
+		//remove all the elements from the old table
 		results.remove();
 
+		// create a fresh table body with no elements
 		let newResults = document.createElement('tbody');
 		resultsTable.append(newResults);
 
+		// populate new table body with the corresponding values
 		if (results_array.length > 0) {
 			results_array.forEach (entry => {
 			let row = document.createElement('tr');
@@ -92,6 +101,7 @@ class Reports {
 				newResults.appendChild(row);
 			});
 		} else {
+			// show all projects 
 			this.sortedArray.forEach (entry => {
 			let row = document.createElement('tr');
 				Object.values(entry).forEach(text => {
@@ -103,7 +113,7 @@ class Reports {
 				newResults.appendChild(row);
 			});
 		}
-		 console.log(results);
+		//  console.log(results);
 		
 	}
 
@@ -165,7 +175,7 @@ class Reports {
 	{
 		console.log('----- loadTimeEntries -----');
 		// INSERT YOUR CODE HERE
-		//only load time entries if both values are filled
+		// only load time entries if both values are filled
 		if (this.users != undefined && this.projects != undefined) {
 			api.makeRequest('GET', `/t-api/companies/${this.company_id}/entries`, {}, this.fillTimeEntriesWithResponse.bind(this));
 		}
@@ -198,17 +208,12 @@ class Reports {
 		let entryArray = new Array();
 		// let sorted = new Array();
 
-		for (let key in xhr_response) {
-			// // create the row and append the data to each row
-			// reports = document.createElement('tr');
-			// reports.setAttribute('id', xhr_response[key].project_id);
-			// let tasks = document.createElement('td');
-			// tasks.textContent = xhr_response[key].description;
+		for (let key in xhr_response) {n;
 
 			// lists out user by first and last name
 			userID = xhr_response[key].user_id;
 			for (let props in this.users) {
-				//compare the user id with each time entry with the user id in the object this.users
+				// compare the user id with each time entry with the user id in the object this.users
 				if (userID == this.users[props].user_id) {
 					user = document.createElement('td');
 					user.textContent = `${this.users[props].last_name}, ${this.users[props].first_name}`;
@@ -223,8 +228,6 @@ class Reports {
 			time = document.createElement('td');
 			time.textContent = convertSecondsToHoursMinutesSeconds(seconds);
 
-			// add the project description to the task
-			// reports.appendChild(tasks);
 
 			// creating the title
 			projectID = xhr_response[key].project_id;
@@ -235,11 +238,6 @@ class Reports {
 					entry_val_title = this.projects[props].title;
 				}
 			}
-			// add the title and time entries to the table
-			// reports.appendChild(title);
-			// // add the last name and first name as table data to the corresponding cell
-			// reports.appendChild(user);
-			// reports.appendChild(time);
 
 			// format date into correct format
 			start_time = xhr_response[key].start_time.split(' ');
@@ -252,11 +250,8 @@ class Reports {
 			let date_entry = document.createElement('td');
 			date_entry.textContent = start_date;
 
-			// add the date, time and Entries to the tbody
-			// reports.appendChild(date_entry);
-			// results.appendChild(reports);
 
-			//create an array of objects with each time entry
+			// create an array of objects with each time entry
 			entryArray[i] = {
 				title : entry_val_title,
 				project : xhr_response[key].description,
@@ -273,13 +268,17 @@ class Reports {
 		filter_projectID = document.getElementById('project_id');
 		filter_userID = document.getElementById('user_id');
 
+		// look for change in selection event
 		filter_projectID.addEventListener('change', (event) => {this.handleProjectChange(event)});
+		filter_userID.addEventListener('change', (event) => {this.handleUserChange(event)});
 
-		console.log(entryArray);
+		//console.log(entryArray);
 
+		// sort the array from newest entries to oldest entries
 		for (let j = entryArray.length - 1; j>=0; j--) {
 			this.sortedArray.push(entryArray[j]);
 		}	
+
 		// create a row of data cells for each entry
 		this.sortedArray.forEach (entry => {
 		let row = document.createElement('tr');
@@ -292,6 +291,7 @@ class Reports {
 			results.appendChild(row);
 		});
 
+		// return the sorted array
 		return this.sortedArray;
 
 	}
