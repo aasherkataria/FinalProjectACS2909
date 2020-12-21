@@ -50,7 +50,7 @@ class Projects {
 	 * The fillprojectswithresponse method get the objects from the 
 	 * xhr response and then for each object inside the response it 
 	 * calls project row to fill the row in the interface
-	 * @param xhr_response we get from the makeRequest api call if successful
+	 * @param xhr_response the response we get from the makeRequest api call if successful
 	 */
 
 	fillProjectsWithResponse(xhr_response)
@@ -66,7 +66,7 @@ class Projects {
 
 	/**
 	 * the project row creates and appends the row in the table
-	 * @param project object which has the requried properties to append to a row
+	 * @param project object of values which has the requried properties to append to a row
 	 */
 	createProjectRow(project)
 	{
@@ -120,12 +120,19 @@ class Projects {
 	//
 	/////////////////////////////////////////////
 
+	/**
+	 * This method shows the form, sets project id for the form and 
+	 * submits the from 
+	 * @param event the event causing it to start.
+	 */
+
 	showCreateForm(event)
 	{
 		console.log('----- showCreateForm -----', event);
 		// unhides
 		let formElement = document.getElementById("project_form");
-		formElement.hidden = false;
+		//formElement.classList.toggle("hide");
+		formElement.hidden= false;
 
 		// setting project id to 0 for new project
 		let projectFormID = document.getElementById("form_project_id");
@@ -140,12 +147,19 @@ class Projects {
 		submit_btn.value = "Create Project";
 	}
 
+	/**
+	 * The method shows the form, and gets the id from the row where it was called from
+	 * and makes the submit button 
+	 * @param event the event causing it to start.
+	 */
+
 	showEditForm(event)
 	{
 		console.log('----- showEditForm -----', event);
 		// unhides the form
 		let formElement = document.getElementById("project_form");
-		formElement.hidden = false;
+		//formElement.classList.toggle("hide");
+		formElement.hidden= false;
 
 		// setting the form project id to project id of the project to be edited
 		let projectFormID = document.getElementById("form_project_id");
@@ -164,14 +178,27 @@ class Projects {
 		submit_btn.value = "Edit Project";
 	}
 
+
+	/**
+	 * The hideForm method makes the form hidden on load of the  * html page
+	 */
+
 	hideForm()
 	{
 		console.log('----- hideForm -----');
 		// hides form
 		let formElement = document.getElementById("project_form");
-		formElement.hidden = true;
+		//formElement.classList.add("hide"); can be used to hide the html element using css
+		 formElement.hidden = true; 
+
 
 	}
+
+	/**
+	 * This method handles the api call for posting or patching the title and a project 
+	 * validates the form project id 
+	 * @param event the event causing it to start.
+	 */
 
 	handleFormSubmit(event)
 	{
@@ -201,6 +228,14 @@ class Projects {
 	//
 	/////////////////////////////////////////////
 
+	/**
+	 * The fillprojectswithresponse method get the objects 		
+	 * from the  xhr response and then for each object inside the
+	 *	response se it 
+	 * calls project row to fill the row in the interface
+	 * @param xhr_response the response we get from the makeRequest api call if successful
+	 */
+
 	createNewProject(xhr_response)
 	{
 		console.log('----- createNewProject -----', xhr_response);
@@ -208,6 +243,13 @@ class Projects {
 		this.createProjectRow(xhr_response);
 		this.hideForm();
 	}
+
+	/**
+	 * Updates the interface and appends a new row of project
+	 * with required details 
+	 * @param xhr_response the response we get from the       
+	 * 	makeRequest api call if successful
+	 */
 
 	updateProject(xhr_response)
 	{
@@ -224,6 +266,11 @@ class Projects {
 	//
 	/////////////////////////////////////////////
 
+	/**
+	 * Makes the DELETE request to the api to delete the row 
+	 * @param event the event causing it to start.
+	 */
+
 	handleDelete(event)
 	{
 		console.log('----- handleDelete -----', event);
@@ -234,6 +281,11 @@ class Projects {
 		// delete request
 		api.makeRequest("DELETE","/t-api/projects/"+id,{},this.updateFromDelete);
 	}
+
+	/**
+	 * updates the interface by deleting the required row
+	 * @param xhr_response the response we get from the makeRequest api call if successful
+	 */
 
 	updateFromDelete(xhr_response)
 	{

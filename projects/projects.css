@@ -48,3 +48,10 @@
     align-content: center;
     color: #343434;
 }
+
+/*
+   HIDING FORMS
+*/
+.hide {
+    display: none !important;
+}
