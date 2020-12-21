@@ -133,7 +133,7 @@ class Reports {
 		console.log('----- fillTimeEntriesWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
 		// initialize 
-		let results = document.getElementById('results').children[1];
+		let results = document.getElementById('results').children[1]; //grab the tbody element
 		let reports;
 		let time;
 		let start_time;
@@ -142,10 +142,19 @@ class Reports {
 		let date;
 		let projectID; 
 		let title;
+		let entry_val_title;
+		let entry_val_user;
 		let user;
 		let userID;
 
+
+		// select elements for projectID and userID
+		let filter_projectID;
+		let filter_userID;
+
+		let i = 0;
 		let entryArray = new Array();
+		let sorted = new Array();
 
 		for (let key in xhr_response) {
 			// create the row and append the data to each row
@@ -161,6 +170,7 @@ class Reports {
 				if (userID == this.users[props].user_id) {
 					user = document.createElement('td');
 					user.textContent = `${this.users[props].last_name}, ${this.users[props].first_name}`;
+					entry_val_user = this.users[props].last_name+" "+this.users[props].first_name;
 				}
 			}
 
@@ -172,7 +182,7 @@ class Reports {
 			time.textContent = convertSecondsToHoursMinutesSeconds(seconds);
 
 			// add the project description to the task
-			reports.appendChild(tasks);
+			// reports.appendChild(tasks);
 
 			// creating the title
 			projectID = xhr_response[key].project_id;
@@ -180,13 +190,14 @@ class Reports {
 				if (projectID == this.projects[props].project_id) {
 					title = document.createElement('td');
 					title.textContent = this.projects[props].title;
+					entry_val_title = this.projects[props].title;
 				}
 			}
 			// add the title and time entries to the table
-			reports.appendChild(title);
-			// add the last name and first name as table data to the corresponding cell
-			reports.appendChild(user);
-			reports.appendChild(time);
+			// reports.appendChild(title);
+			// // add the last name and first name as table data to the corresponding cell
+			// reports.appendChild(user);
+			// reports.appendChild(time);
 
 			// format date into correct format
 			start_time = xhr_response[key].start_time.split(' ');
@@ -200,16 +211,44 @@ class Reports {
 			date_entry.textContent = start_date;
 
 			// add the date, time and Entries to the tbody
-			reports.appendChild(date_entry);
-			
-			entryArray.push(reports);
+			// reports.appendChild(date_entry);
+			// results.appendChild(reports);
+
+			//create an array of objects with each time entry
+			entryArray[i] = {
+				title : entry_val_title,
+				project : xhr_response[key].description,
+				user : entry_val_user,
+				time: convertSecondsToHoursMinutesSeconds(seconds),
+				date : start_date
+			}
+
+			i++; // increment the counter every time the loop runs
 
 		}
-		console.log(entryArray)
-		
-		for(let j = entryArray.length-1; j<entryArray.length;j--){
-			results.appendChild(entryArray[j]);
-		}
+
+
+
+		// find the select for projects and users
+		filter_projectID = document.getElementById('project_id');
+		filter_userID = document.getElementById('user_id');
+
+		console.log(entryArray);
+
+		for (let j = entryArray.length - 1; j>=0; j--) {
+			sorted.push(entryArray[j]);
+		}	
+		// create a row of data cells for each entry
+		sorted.forEach (entry => {
+		let row = document.createElement('tr');
+			Object.values(entry).forEach(text => {
+				let cell = document.createElement('td');
+				let textNode = document.createTextNode(text);
+				cell.appendChild(textNode);
+				row.appendChild(cell);
+			}) 
+			results.appendChild(row);
+		});
 
 	}
 
@@ -222,7 +261,7 @@ class Reports {
 	startDate(date,time)
 	{
 		let timeString = time[0]+":"+time[1];
-		let dayString=month(date[1])+" "+date[2]+", "+date[0]+" ";
+		let dayString = month(date[1])+" "+date[2]+", "+date[0]+" ";
 		let dateFormat=dayString+timeString;
 		return dateFormat;
 
