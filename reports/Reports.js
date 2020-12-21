@@ -12,7 +12,7 @@ class Reports {
 		this.projects; //list of projects
 		this.users; //list of users
 
-		this.sortedArray = new Array();
+		this.sortedArray = new Array(); //sorted array
 
 		this.loadProjects();		
 		this.loadUsers();
@@ -68,13 +68,11 @@ class Reports {
 		let selectArray = event.target.children;
 		console.log(selectArray);
 		for (let i = 0; i<selectArray.length; i++) {
-			console.log(this.projects);
-			// if(selectArray[key].innerHTML.localeCompare(this.projects.title) == 0) {
-			// 	 console.log("Here");
-			// } else {
-			// 	console.log("not true");
-			// }
-		// console.log(event.target.children[1].innerHTML);
+
+		}
+		for (let j = 0; j<this.sortedArray.length; j++) {
+			console.log(this.sortedArray[j].title);
+			console.log(j);
 		}
 	}
 
