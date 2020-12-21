@@ -155,7 +155,7 @@ class Reports {
 			time = document.createElement('td');
 			time.textContent = convertSecondsToHoursMinutesSeconds(seconds);
 			// format date into correct format
-			date = xhr_response[key].start_time.split(' ');
+			date = xhr_response[key].start_time.split(' ')[0];
 			console.log(date);
 			// console.log('1ST ENTRY START', start_time);
 			// console.log('1ST ENTRY STOP', end_time);
