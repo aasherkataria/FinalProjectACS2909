@@ -62,6 +62,7 @@ class Reports {
 		console.log('----- handleProjectChange -----', event);
 		// INSERT YOUR CODE HERE
 
+
 	}
 
 
@@ -132,7 +133,7 @@ class Reports {
 	{
 		console.log('----- fillTimeEntriesWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
-		// initialize 
+		// initialize variables
 		let results = document.getElementById('results').children[1]; //grab the tbody element
 		let reports;
 		let time;
@@ -146,7 +147,6 @@ class Reports {
 		let entry_val_user;
 		let user;
 		let userID;
-
 
 		// select elements for projectID and userID
 		let filter_projectID;
@@ -227,11 +227,11 @@ class Reports {
 
 		}
 
-
-
 		// find the select for projects and users
 		filter_projectID = document.getElementById('project_id');
 		filter_userID = document.getElementById('user_id');
+
+		filter_projectID.addEventListener('change', (event) => {this.handleProjectChange(event)});
 
 		console.log(entryArray);
 
