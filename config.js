@@ -112,6 +112,6 @@ function showError(error_details) {
 // Additional Utility function to get proper number of digits for time
 // 00:00:00 format
 function properTimeSyntax(i){
-   return (i<10?'0'+i:i);
+   return ( i < 10 ? '0' + i : i );
 }
 

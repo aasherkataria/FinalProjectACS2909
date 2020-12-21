@@ -132,15 +132,16 @@ class Reports {
 	{
 		console.log('----- fillTimeEntriesWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
-		// grab tbody element
+		// initialize 
 		let results = document.getElementById('results').children[1];
-		let project = '';
 		let reports = '';
 		let time;
 		let start_time;
 		let end_time;
 		let seconds;
 		let date;
+		let projectID; 
+		let title;
 
 		for (let key in xhr_response) {
 			// create the row and append the data to each row
@@ -148,55 +149,66 @@ class Reports {
 			reports.setAttribute('id', xhr_response[key].project_id);
 			let tasks = document.createElement('td');
 			tasks.textContent = xhr_response[key].description;
+
 			// calculate the time
 			start_time = xhr_response[key].start_time.substr(10).split(':');
 			end_time = xhr_response[key].end_time.substr(10).split(':');
 			seconds = ((+end_time[0]) * 60 * 60 + (+end_time[1]) * 60 + (+end_time[2])) - ((+start_time[0]) * 60 * 60 + (+start_time[1]) * 60 + (+start_time[2]));
 			time = document.createElement('td');
 			time.textContent = convertSecondsToHoursMinutesSeconds(seconds);
-			// format date into correct format
-			date = xhr_response[key].start_time.split(' ')[0];
-			console.log(date);
-			// console.log('1ST ENTRY START', start_time);
-			// console.log('1ST ENTRY STOP', end_time);
-			// console.log(seconds);
 
+			// add the project description to the task
 			reports.appendChild(tasks);
+
+			// creating the title
+			projectID = xhr_response[key].project_id;
+			for (let props in this.projects) {
+				if (projectID == this.projects[props].project_id) {
+					title = document.createElement('td');
+					title.textContent = this.projects[props].title;
+				}
+			}
+			// add the title and time entries to the table
+			reports.appendChild(title);
 			reports.appendChild(time);
-			// for (let titles in this.projects) {
-			// 	project = document.createElement('td');
-			// 	project.textContent = this.projects[titles].title;
-			// 	reports.appendChild(project);
-			// }
-			
 
-
+			// format date into correct format
 			start_time = xhr_response[key].start_time.split(' ');
-			date=start_time[0].split('-');
-			time=start_time[1].split(':');
-			let x=startDate(date,time);
-			let y=document.createElement('td');
-			y.textContent=x;
+			// separate date and time into two arrays
+			date = start_time[0].split('-');
+			time = start_time[1].split(':');
 
+			// create table data with formated date and time content
+			let start_date = this.startDate(date,time);
+			let date_entry = document.createElement('td');
+			date_entry.textContent = start_date;
 
-
-			reports.appendChild(y);
+			// add the date, time and Entries to the tbody
+			reports.appendChild(date_entry);
 			results.appendChild(reports);
 		}
-		function  startDate(date,time)
+		
+
+	}
+
+	/**
+	 * The startDate method takes
+	 * @param date An Array of dates
+	 * @param time An Array of times
+	 * and formats them into the requested format (Month, Day, Year HH:MM);
+	 */
+	startDate(date,time)
+	{
+		let timeString = time[0]+":"+time[1];
+		let dayString=month(date[1])+" "+date[2]+", "+date[0]+" ";
+		let dateFormat=dayString+timeString;
+		return dateFormat;
+
+		function month(num)
 		{
-			let timeString=time[0]+":"+time[1];
-			let dayString=month(date[1])+" "+date[2]+", "+date[0]+" ";
-			let dateFormat=dayString+timeString;
-			return dateFormat;
-
-			function month(num)
-			{
-				var  months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-				let monthName=months[num-1];
-				return monthName;
-			}
-
+			var  months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+			let monthName=months[num-1];
+			return monthName;
 		}
 
 	}
