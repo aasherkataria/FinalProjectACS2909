@@ -78,11 +78,6 @@ function convertTimestampToDateFormat(timestamp) {
 
 	// return the formatted date
     return `${yyyy}-${mm}-${dd} ${properTimeSyntax(hrs)}:${properTimeSyntax(mins)}:${properTimeSyntax(secs)}`;
-	
-	// return date.getFullYear()+"-"+properTimeSyntax(date.getMonth()+1)+"-"+properTimeSyntax(date.getDate())+" "+
-	// 	   properTimeSyntax(date.getHours())+":"+properTimeSyntax(date.getMinutes())+":"+
-	// 	   properTimeSyntax(date.getSeconds());
-
 }
 
 /**
