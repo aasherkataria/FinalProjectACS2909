@@ -147,8 +147,11 @@ class Reports {
 		let user;
 		let userID;
 
-		let i = 0;
+		// select elements for projectID and userID
+		let filter_projectID;
+		let filter_userID;
 
+		let i = 0;
 		let entryArray = new Array();
 
 		for (let key in xhr_response) {
@@ -215,8 +218,7 @@ class Reports {
 				project : xhr_response[key].description,
 				user : entry_val_user,
 				time: convertSecondsToHoursMinutesSeconds(seconds),
-				date : start_date,
-				row : reports  
+				date : start_date
 			}
 
 			i++; // increment the counter every time the loop runs
@@ -236,7 +238,11 @@ class Reports {
 			results.appendChild(row);
 		});
 
-		
+		// find the select for projects and users
+		filter_projectID = document.getElementById('project_id');
+		filter_userID = document.getElementById('user_id');
+
+		console.log(filter_projectID[1]);
 
 		console.log(entryArray)
 		
