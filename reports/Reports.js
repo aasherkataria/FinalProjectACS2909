@@ -64,23 +64,21 @@ class Reports {
 	{
 		console.log('----- handleProjectChange -----', event);
 		// INSERT YOUR CODE HERE
-		let results = document.getElementById('results').children[1]; //grab the tbody element
+		let results = document.getElementById('results').children[1]; //grab the old tbody element
+		let resultsTable = document.getElementById('results');
 		console.log(this.sortedArray);
 		let selectArray = event.target.selectedIndex;
 		let selectedValue = event.target.children[selectArray].firstChild.data;
 		console.log(selectArray);
 		console.log(selectedValue);
-		// for (let i = 0; i<selectArray.length; i++) {
-		// 	for (let j = 0; j<this.sortedArray.length; j++)
-		// 	{
-		// 		console.log(this.sortedArray[j].title);
-				
-		// 	}
-		// 	console.log('FuckUpaulo');
-		// }
 		let results_array;
 
 		results_array = this.sortedArray.filter( item => item.title.includes(selectedValue));
+
+		results.remove();
+
+		let newResults = document.createElement('tbody');
+		resultsTable.append(newResults);
 
 		if (results_array.length > 0) {
 			results_array.forEach (entry => {
@@ -91,7 +89,18 @@ class Reports {
 					cell.appendChild(textNode);
 					row.appendChild(cell);
 				}) 
-				results.appendChild(row);
+				newResults.appendChild(row);
+			});
+		} else {
+			this.sortedArray.forEach (entry => {
+			let row = document.createElement('tr');
+				Object.values(entry).forEach(text => {
+					let cell = document.createElement('td');
+					let textNode = document.createTextNode(text);
+					cell.appendChild(textNode);
+					row.appendChild(cell);
+				}) 
+				newResults.appendChild(row);
 			});
 		}
 		 console.log(results);
@@ -190,11 +199,11 @@ class Reports {
 		// let sorted = new Array();
 
 		for (let key in xhr_response) {
-			// create the row and append the data to each row
-			reports = document.createElement('tr');
-			reports.setAttribute('id', xhr_response[key].project_id);
-			let tasks = document.createElement('td');
-			tasks.textContent = xhr_response[key].description;
+			// // create the row and append the data to each row
+			// reports = document.createElement('tr');
+			// reports.setAttribute('id', xhr_response[key].project_id);
+			// let tasks = document.createElement('td');
+			// tasks.textContent = xhr_response[key].description;
 
 			// lists out user by first and last name
 			userID = xhr_response[key].user_id;
