@@ -63,9 +63,14 @@ class Reports {
 		// INSERT YOUR CODE HERE
 		let selectArray = event.target.children;
 		console.log(selectArray);
-		for (let key in selectArray)
-			console.log(selectArray[key].innerHTML);
+		for (let key in selectArray) {
+			if(selectArray[key].innerHTML.localeCompare(this.projects.title) == 0) {
+				 console.log("Here");
+			} else {
+				console.log("not true");
+			}
 		// console.log(event.target.children[1].innerHTML);
+		}
 	}
 
 
