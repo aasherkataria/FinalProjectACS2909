@@ -201,12 +201,15 @@ class Reports {
 
 			// add the date, time and Entries to the tbody
 			reports.appendChild(date_entry);
-			results.appendChild(reports);
+			
 			entryArray.push(reports);
-;
+
 		}
 		console.log(entryArray)
 		
+		for(let j = entryArray.length-1; j<entryArray.length;j--){
+			results.appendChild(entryArray[j]);
+		}
 
 	}
 
