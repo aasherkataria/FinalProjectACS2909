@@ -38,6 +38,10 @@
     display: none !important;
 }
 
+.show {
+    display: flex;
+}
+
 #track_form {
     margin-bottom: 10px;
     background-color: #CDCDCD;

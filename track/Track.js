@@ -29,6 +29,8 @@ class Track
 		//load existing projects
 		this.loadProjects();
 
+		this.stop_button.classList.add('hide'); // hide the stop button when the page loads
+
 		//keep track of clicks from start and stop buttons
 		this.start_button.addEventListener('click', (event) => {this.start(event)});
 		this.stop_button.addEventListener('click', this.stop.bind(this));
@@ -82,6 +84,7 @@ class Track
 		//add the timestamp to local storage
 		localStorage.setItem("timer_timestamp", timestamp);
 		console.log(localStorage.getItem("timer_timestamp"));
+		this.stop_button.classList.remove('hide');
 		// show the timer
 		this.running = true;
 	}
@@ -101,16 +104,10 @@ class Track
 			end_time : convertTimestampToDateFormat(Date.now())
 		};
 
-		// let params = 'description=testDesc&project_id=1&user_id=1&start_time=00:00:00&end_time=01:00:00';
-		//process POST requests from objects to formData 
-		//let formData = new FormData();
-		// for (let key in time_entry) {
-		// 	console.log(key, time_entry[key]);
-		// }
+		this.stop_button.classList.toggle('hide');
+		this.start_button.classList.toggle('hide');
 
-		//formData.append('description', 'testDesc');
-
-		//console.log(formData.entries());
+		this.track_form.reset();
 
 		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.stopTimer.bind(this));
 		
