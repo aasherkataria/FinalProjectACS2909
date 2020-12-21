@@ -65,16 +65,21 @@ class Reports {
 		console.log('----- handleProjectChange -----', event);
 		// INSERT YOUR CODE HERE
 		console.log(this.sortedArray);
-		let selectArray = event.target.children;
+		let selectArray = event.target.selectedIndex;
+		let selectedValue = event.target.children[selectArray].firstChild.data;
 		console.log(selectArray);
-		for (let i = 0; i<selectArray.length; i++) {
-			for (let j = 0; j<this.sortedArray.length; j++)
-			{
-				console.log(this.sortedArray[j].title+j);
+		console.log(selectedValue);
+		// for (let i = 0; i<selectArray.length; i++) {
+		// 	for (let j = 0; j<this.sortedArray.length; j++)
+		// 	{
+		// 		console.log(this.sortedArray[j].title);
 				
-			}
-			console.log('FuckUpaulo');
-		}
+		// 	}
+		// 	console.log('FuckUpaulo');
+		// }
+		let results;
+
+		// results = this.sortedArray.filter( item => item.state.includes)
 		
 	}
 
