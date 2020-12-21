@@ -211,12 +211,14 @@ class Reports {
 			reports.appendChild(date_entry);
 			results.appendChild(reports);
 
+			//create an array of objects with each time entry
 			entryArray[i] = {
 				title : entry_val_title,
 				project : xhr_response[key].description,
 				user : entry_val_user,
 				time: convertSecondsToHoursMinutesSeconds(seconds),
-				date : start_date  
+				date : start_date,
+				row : reports  
 			}
 
 			i++;
@@ -236,7 +238,7 @@ class Reports {
 	startDate(date,time)
 	{
 		let timeString = time[0]+":"+time[1];
-		let dayString=month(date[1])+" "+date[2]+", "+date[0]+" ";
+		let dayString = month(date[1])+" "+date[2]+", "+date[0]+" ";
 		let dateFormat=dayString+timeString;
 		return dateFormat;
 

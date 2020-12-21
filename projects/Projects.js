@@ -184,11 +184,10 @@ class Projects {
 		event.preventDefault();
 
 		// checks and exceutes valid api calls
-		if(projectFormID==0){
+		if (projectFormID == 0) {
 			api.makeRequest("POST","/t-api/projects/",{title : titleParam.value},this.createNewProject.bind(this));
 			
-		}
-		else {
+		} else {
 			api.makeRequest("PATCH","/t-api/projects/"+`${projectFormID}`,{title : titleParam.value},this.updateProject.bind(this));
 		}
 
