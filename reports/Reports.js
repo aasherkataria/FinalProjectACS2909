@@ -70,10 +70,11 @@ class Reports {
 		for (let i = 0; i<selectArray.length; i++) {
 
 		}
-		for (let j = 0; j<this.sortedArray.length; j++) {
-			console.log(this.sortedArray[j].title);
-			console.log(j);
-		}
+		this.sortedArray.forEach(function (entry) {
+			Object.values(entry).forEach(value => {
+				console.log(value);
+			});
+		});
 	}
 
 
