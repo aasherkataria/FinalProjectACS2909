@@ -220,8 +220,8 @@ class Reports {
 
 		function month(num)
 		{
-			var  months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-			let monthName=months[num-1];
+			let  months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+			let monthName = months[num-1];
 			return monthName;
 		}
 
