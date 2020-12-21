@@ -64,6 +64,7 @@ class Reports {
 	{
 		console.log('----- handleProjectChange -----', event);
 		// INSERT YOUR CODE HERE
+		let results = document.getElementById('results').children[1]; //grab the tbody element
 		console.log(this.sortedArray);
 		let selectArray = event.target.selectedIndex;
 		let selectedValue = event.target.children[selectArray].firstChild.data;
@@ -77,9 +78,23 @@ class Reports {
 		// 	}
 		// 	console.log('FuckUpaulo');
 		// }
-		let results;
+		let results_array;
 
-		// results = this.sortedArray.filter( item => item.state.includes)
+		results_array = this.sortedArray.filter( item => item.title.includes(selectedValue));
+
+		if (results_array.length > 0) {
+			results_array.forEach (entry => {
+			let row = document.createElement('tr');
+				Object.values(entry).forEach(text => {
+					let cell = document.createElement('td');
+					let textNode = document.createTextNode(text);
+					cell.appendChild(textNode);
+					row.appendChild(cell);
+				}) 
+				results.appendChild(row);
+			});
+		}
+		 console.log(results);
 		
 	}
 
@@ -268,7 +283,7 @@ class Reports {
 			results.appendChild(row);
 		});
 
-		return this.sortedArraysorted;
+		return this.sortedArray;
 
 	}
 
