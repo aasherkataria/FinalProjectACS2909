@@ -134,7 +134,7 @@ class Reports {
 		// INSERT YOUR CODE HERE
 		// initialize 
 		let results = document.getElementById('results').children[1];
-		let reports = '';
+		let reports;
 		let time;
 		let start_time;
 		let end_time;
@@ -142,6 +142,10 @@ class Reports {
 		let date;
 		let projectID; 
 		let title;
+		let user;
+		let userID;
+		let first_name;
+		let last_name;
 
 		for (let key in xhr_response) {
 			// create the row and append the data to each row
@@ -149,6 +153,16 @@ class Reports {
 			reports.setAttribute('id', xhr_response[key].project_id);
 			let tasks = document.createElement('td');
 			tasks.textContent = xhr_response[key].description;
+
+			// lists out user by first and last name
+			userID = xhr_response[key].user_id;
+			for (let props in this.users) {
+				//compare the user id with each time entry with the user id in the object this.users
+				if (userID == this.users[props].user_id) {
+					user = document.createElement('td');
+					user.textContent = `${this.users[props].last_name}, ${this.users[props].first_name}`;
+				}
+			}
 
 			// calculate the time
 			start_time = xhr_response[key].start_time.substr(10).split(':');
@@ -170,6 +184,8 @@ class Reports {
 			}
 			// add the title and time entries to the table
 			reports.appendChild(title);
+			// add the last name and first name as table data to the corresponding cell
+			reports.appendChild(user);
 			reports.appendChild(time);
 
 			// format date into correct format
