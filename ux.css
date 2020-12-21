@@ -7,6 +7,23 @@ nav a {
   text-decoration: none;
 }
 
+/**
+  This is additional styling to make the content box look less clunky
+  and follows a flat-design pattern
+*/
+#content_container {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border: none !important;
+}
+
+#new_project_button {
+  color: white;
+}
+
+a {
+  
+}
+
 
 /**
   JavaScript Modifications
