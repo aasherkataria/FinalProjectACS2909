@@ -168,18 +168,8 @@ class Reports {
 			// 	project.textContent = this.projects[titles].title;
 			// 	reports.appendChild(project);
 			// }
-			{
-				/// for title
-				let y=xhr_response[key].project_id;
-				for(let objects in this.projects())
-				{
-					if(y==objects.project_id)
-					let tittle=objects.title;
-				}
-				let tittttle=document.createElement('td');
-				tittttle.textContent= tittle;
-				reports.appendChild(tittttle);
-			}
+			
+
 
 			start_time = xhr_response[key].start_time.split(' ');
 			date=start_time[0].split('-');
