@@ -25,6 +25,10 @@ a {
   border-radius: 2px;
 }
 
+#results tr td{
+  text-align: center;
+}
+
 
 /**
   JavaScript Modifications
