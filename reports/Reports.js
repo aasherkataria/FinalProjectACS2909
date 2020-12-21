@@ -144,8 +144,6 @@ class Reports {
 		let title;
 		let user;
 		let userID;
-		let first_name;
-		let last_name;
 
 		for (let key in xhr_response) {
 			// create the row and append the data to each row
