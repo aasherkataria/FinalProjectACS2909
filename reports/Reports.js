@@ -142,8 +142,14 @@ class Reports {
 		let date;
 		let projectID; 
 		let title;
+		let entry_val_title;
+		let entry_val_user;
 		let user;
 		let userID;
+
+		let i = 0;
+
+		let time_entries = {};
 
 		let entryArray = new Array();
 
@@ -161,6 +167,7 @@ class Reports {
 				if (userID == this.users[props].user_id) {
 					user = document.createElement('td');
 					user.textContent = `${this.users[props].last_name}, ${this.users[props].first_name}`;
+					entry_val_user = this.users[props].last_name+" "+this.users[props].first_name;
 				}
 			}
 
@@ -180,6 +187,7 @@ class Reports {
 				if (projectID == this.projects[props].project_id) {
 					title = document.createElement('td');
 					title.textContent = this.projects[props].title;
+					entry_val_title = this.projects[props].title;
 				}
 			}
 			// add the title and time entries to the table
@@ -202,8 +210,17 @@ class Reports {
 			// add the date, time and Entries to the tbody
 			reports.appendChild(date_entry);
 			results.appendChild(reports);
-			entryArray.push(reports);
-;
+
+			entryArray[i] = {
+				title : entry_val_title,
+				project : xhr_response[key].description,
+				user : entry_val_user,
+				time: convertSecondsToHoursMinutesSeconds(seconds),
+				date : start_date  
+			}
+
+			i++;
+
 		}
 		console.log(entryArray)
 		
