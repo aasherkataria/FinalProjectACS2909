@@ -168,7 +168,34 @@ class Reports {
 			// 	project.textContent = this.projects[titles].title;
 			// 	reports.appendChild(project);
 			// }
+			
+
+			start_time = xhr_response[key].start_time.split(' ');
+			date=start_time[0].split('-');
+			time=start_time[1].split(':');
+			let x=startDate(date,time);
+			let y=document.createElement('td');
+			y.textContent=x;
+
+
+
+			reports.appendChild(y);
 			results.appendChild(reports);
+		}
+		function  startDate(date,time)
+		{
+			let timeString=time[0]+":"+time[1];
+			let dayString=month(date[1])+" "+date[2]+", "+date[0]+" ";
+			let dateFormat=dayString+timeString;
+			return dateFormat;
+
+			function month(num)
+			{
+				var  months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+				let monthName=months[num-1];
+				return monthName;
+			}
+
 		}
 
 	}
