@@ -68,13 +68,14 @@ class Reports {
 		let selectArray = event.target.children;
 		console.log(selectArray);
 		for (let i = 0; i<selectArray.length; i++) {
-
+			for (let j = 0; j<this.sortedArray.length; j++)
+			{
+				console.log(this.sortedArray[j].title+j);
+				
+			}
+			console.log('FuckUpaulo');
 		}
-		this.sortedArray.forEach(function (entry) {
-			Object.values(entry).forEach(value => {
-				console.log(value);
-			});
-		});
+		
 	}
 
 
