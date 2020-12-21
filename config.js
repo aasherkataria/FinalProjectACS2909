@@ -11,7 +11,7 @@ let api_url = 'https://acs2909.lusciousorange.com/t-api/';
  * @type {string}
  * The three API keys for the three segments of the project. You must replace these YOUR KEYS for your respective roles.
  */
-let api_key_time_tracking = 'pr2kn37-qz6fgn0p27rjd5b8-7j1nfw3'; // Aasher Kataria - Track
+let api_key_time_tracking = 'pr2kn37-qz6fgn0p27rjd5b8-7j1nfw3'; // Aashirwad Kataria - Track
 let api_key_reports = 'nm6spj3-ztvkc16f3g5spdq9-sg8fvw8';  // Jaskirat Singh - Reports
 let api_key_projects = 'x3mzn47-13m4q0pjk5dzrwy9-5n4k8h4'; // Navkaran Singh - Projects
 
@@ -21,7 +21,7 @@ let api_key_projects = 'x3mzn47-13m4q0pjk5dzrwy9-5n4k8h4'; // Navkaran Singh - P
  * YOUR api key which is used for basic connections. When submitting for the final project, any of the three API keys
  * can be included here, but for any development work, you must use your own API key.
  */
-let my_api_key = 'x3mzn47-13m4q0pjk5dzrwy9-5n4k8h4'; //for workflow to work
+let my_api_key = 'pr2kn37-qz6fgn0p27rjd5b8-7j1nfw3'; //for workflow to work
 
 /**
  * @var {int} company_id
