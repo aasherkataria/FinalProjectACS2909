@@ -133,7 +133,7 @@ class Reports {
 		console.log('----- fillTimeEntriesWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
 		// initialize 
-		let results = document.getElementById('results').children[1];
+		let results = document.getElementById('results').children[1]; //grab the tbody element
 		let reports;
 		let time;
 		let start_time;
@@ -148,8 +148,6 @@ class Reports {
 		let userID;
 
 		let i = 0;
-
-		let time_entries = {};
 
 		let entryArray = new Array();
 
@@ -179,7 +177,7 @@ class Reports {
 			time.textContent = convertSecondsToHoursMinutesSeconds(seconds);
 
 			// add the project description to the task
-			reports.appendChild(tasks);
+			// reports.appendChild(tasks);
 
 			// creating the title
 			projectID = xhr_response[key].project_id;
@@ -191,10 +189,10 @@ class Reports {
 				}
 			}
 			// add the title and time entries to the table
-			reports.appendChild(title);
-			// add the last name and first name as table data to the corresponding cell
-			reports.appendChild(user);
-			reports.appendChild(time);
+			// reports.appendChild(title);
+			// // add the last name and first name as table data to the corresponding cell
+			// reports.appendChild(user);
+			// reports.appendChild(time);
 
 			// format date into correct format
 			start_time = xhr_response[key].start_time.split(' ');
@@ -208,7 +206,7 @@ class Reports {
 			date_entry.textContent = start_date;
 
 			// add the date, time and Entries to the tbody
-			reports.appendChild(date_entry);
+			// reports.appendChild(date_entry);
 			results.appendChild(reports);
 
 			//create an array of objects with each time entry
@@ -221,9 +219,25 @@ class Reports {
 				row : reports  
 			}
 
-			i++;
+			i++; // increment the counter every time the loop runs
 
 		}
+
+		// create a row of data cells for each entry
+		entryArray.forEach (entry => {
+			let row = document.createElement('tr');
+
+			Object.values(entry).forEach(text => {
+				let cell = document.createElement('td');
+				let textNode = document.createTextNode(text);
+				cell.appendChild(textNode);
+				row.appendChild(cell);
+			}) 
+			results.appendChild(row);
+		});
+
+		
+
 		console.log(entryArray)
 		
 
