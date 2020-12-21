@@ -12,6 +12,8 @@ class Reports {
 		this.projects; //list of projects
 		this.users; //list of users
 
+		this.sortedArray = new Array();
+
 		this.loadProjects();		
 		this.loadUsers();
 	}
@@ -28,10 +30,11 @@ class Reports {
 		console.log('----- loadProjects -----');
 		// INSERT YOUR CODE HERE
 		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse.bind(this));
+
 		if(this.projects!= null)
 		{
-		this.loadTimeEntries();
-	}
+			this.loadTimeEntries();
+		}
 
 	}
 
@@ -61,14 +64,16 @@ class Reports {
 	{
 		console.log('----- handleProjectChange -----', event);
 		// INSERT YOUR CODE HERE
+		console.log(this.sortedArray);
 		let selectArray = event.target.children;
 		console.log(selectArray);
-		for (let key in selectArray) {
-			if(selectArray[key].innerHTML.localeCompare(this.projects.title) == 0) {
-				 console.log("Here");
-			} else {
-				console.log("not true");
-			}
+		for (let i = 0; i<selectArray.length; i++) {
+			console.log(this.projects);
+			// if(selectArray[key].innerHTML.localeCompare(this.projects.title) == 0) {
+			// 	 console.log("Here");
+			// } else {
+			// 	console.log("not true");
+			// }
 		// console.log(event.target.children[1].innerHTML);
 		}
 	}
@@ -162,7 +167,7 @@ class Reports {
 
 		let i = 0;
 		let entryArray = new Array();
-		let sorted = new Array();
+		// let sorted = new Array();
 
 		for (let key in xhr_response) {
 			// create the row and append the data to each row
@@ -244,10 +249,10 @@ class Reports {
 		console.log(entryArray);
 
 		for (let j = entryArray.length - 1; j>=0; j--) {
-			sorted.push(entryArray[j]);
+			this.sortedArray.push(entryArray[j]);
 		}	
 		// create a row of data cells for each entry
-		sorted.forEach (entry => {
+		this.sortedArray.forEach (entry => {
 		let row = document.createElement('tr');
 			Object.values(entry).forEach(text => {
 				let cell = document.createElement('td');
@@ -257,6 +262,8 @@ class Reports {
 			}) 
 			results.appendChild(row);
 		});
+
+		return this.sortedArraysorted;
 
 	}
 
