@@ -208,7 +208,7 @@ class Reports {
 		let entryArray = new Array();
 		// let sorted = new Array();
 
-		for (let key in xhr_response) {n;
+		for (let key in xhr_response) {
 
 			// lists out user by first and last name
 			userID = xhr_response[key].user_id;
