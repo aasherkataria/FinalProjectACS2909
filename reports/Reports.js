@@ -227,22 +227,36 @@ class Reports {
 
 		// create a row of data cells for each entry
 		entryArray.forEach (entry => {
-			let row = document.createElement('tr');
+			
 
-			Object.values(entry).forEach(text => {
-				let cell = document.createElement('td');
-				let textNode = document.createTextNode(text);
-				cell.appendChild(textNode);
-				row.appendChild(cell);
-			}) 
-			results.appendChild(row);
+			for (let j = entryArray.length - 1; j>=0; j--) {
+				let row = document.createElement('tr');
+				Object.values(entry).forEach(text =>{
+					let cell = document.createElement('td');
+					let textNode = document.createTextNode(text);
+					cell.appendChild(textNode);
+					row.appendChild(cell);
+				});
+				//console.log(entryArray[j]);
+				results.appendChild(row);
+
+			// Object.values(entry).forEach(text => {
+			// 	let cell = document.createElement('td');
+			// 	let textNode = document.createTextNode(text);
+			// 	cell.appendChild(textNode);
+			// 	row.appendChild(cell);
+			// }) 
+
+
+			
 		});
 
 		// find the select for projects and users
 		filter_projectID = document.getElementById('project_id');
 		filter_userID = document.getElementById('user_id');
 
-		console.log(filter_projectID[1]);
+		
+		console.log(filter_projectID[1].textContent);
 
 		console.log(entryArray)
 		
