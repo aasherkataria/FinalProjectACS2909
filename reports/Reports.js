@@ -140,6 +140,7 @@ class Reports {
 		let start_time;
 		let end_time;
 		let seconds;
+		let date;
 
 		for (let key in xhr_response) {
 			// create the row and append the data to each row
@@ -153,6 +154,9 @@ class Reports {
 			seconds = ((+end_time[0]) * 60 * 60 + (+end_time[1]) * 60 + (+end_time[2])) - ((+start_time[0]) * 60 * 60 + (+start_time[1]) * 60 + (+start_time[2]));
 			time = document.createElement('td');
 			time.textContent = convertSecondsToHoursMinutesSeconds(seconds);
+			// format date into correct format
+			date = xhr_response[key].start_time.split(' ');
+			console.log(date);
 			// console.log('1ST ENTRY START', start_time);
 			// console.log('1ST ENTRY STOP', end_time);
 			// console.log(seconds);
@@ -166,8 +170,6 @@ class Reports {
 			// }
 			results.appendChild(reports);
 		}
-
-		console.log(results);
 
 	}
 

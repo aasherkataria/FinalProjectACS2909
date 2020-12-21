@@ -75,14 +75,14 @@ class Track
 	{
 		console.log('----- start -----', event);
 		// INSERT YOUR CODE HERE
-		//on click hide the start
+		//hide the start button
 		event.target.classList.add('hide');
 		//variable that holds the timestamp at which the start method was executed
 		let timestamp = convertTimestampToDateFormat(Date.now());
 		//add the timestamp to local storage
-		localStorage.setItem("timer_timestamp",timestamp);
+		localStorage.setItem("timer_timestamp", timestamp);
 		console.log(localStorage.getItem("timer_timestamp"));
-		//
+		// show the timer
 		this.running = true;
 	}
 
