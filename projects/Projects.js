@@ -8,7 +8,6 @@ class Projects {
 	 */
 	constructor(api, company_id)
 	{
-		this.project_form = document.getElementById('project_form');
 
 		this.api = api;
 		this.company_id = company_id;
@@ -175,12 +174,12 @@ class Projects {
 
 		// edit project submit button
 		const submit_btn = document.getElementById('submit_button');
-		submit_btn.value = "Edit Project";
+		submit_btn.value = " Edit Project  ";
 	}
 
 
 	/**
-	 * The hideForm method makes the form hidden on load of the  * html page
+	 * The hideForm method makes the form hidden on load of the html page
 	 */
 
 	hideForm()

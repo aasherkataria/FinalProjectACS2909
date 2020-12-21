@@ -47,11 +47,14 @@
     border: none;
     align-content: center;
     color: #343434;
+    cursor: pointer;
 }
 
 /*
    HIDING FORMS
-*/
-.hide {
+   if using classList in js to make css changes
+   .hide {
     display: none !important;
-}
+    }
+
+*/
