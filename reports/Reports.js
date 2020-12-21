@@ -145,6 +145,8 @@ class Reports {
 		let user;
 		let userID;
 
+		let entryArray = new Array();
+
 		for (let key in xhr_response) {
 			// create the row and append the data to each row
 			reports = document.createElement('tr');
@@ -200,7 +202,10 @@ class Reports {
 			// add the date, time and Entries to the tbody
 			reports.appendChild(date_entry);
 			results.appendChild(reports);
+			entryArray.push(reports);
+;
 		}
+		console.log(entryArray)
 		
 
 	}
