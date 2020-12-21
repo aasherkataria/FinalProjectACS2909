@@ -1,7 +1,15 @@
+/********
+    Template:
+        small-spacing : 5px
+        big-spacing : 10px
+        light-neutral-colour : #CDCDCD
+        dark-neutral-colour : #343434
+        bright-colour: #356915
+*********/
+
 #reports_filter_form
 {
-    background-color: lightcyan;
-    color:brown;
+    background-color: #CDCDCD;
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -25,7 +33,8 @@ tbody th
 {
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid  lightcyan;
+    border-bottom: 1px solid lightcyan;
     padding: 5px;
     text-align: center;
 }
+

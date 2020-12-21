@@ -49,7 +49,10 @@ class Track
 				this.minutes = 0;
 			}
 		} else {
+			//reset the timer
 			this.seconds = 0;
+			this.minutes = 0;
+			this.hours = 0;
 		}
 
 		// console.log(this.seconds++ ? running : this.seconds = 0);
@@ -72,14 +75,14 @@ class Track
 	{
 		console.log('----- start -----', event);
 		// INSERT YOUR CODE HERE
-		//on click hide the start
+		//hide the start button
 		event.target.classList.add('hide');
 		//variable that holds the timestamp at which the start method was executed
 		let timestamp = convertTimestampToDateFormat(Date.now());
 		//add the timestamp to local storage
-		localStorage.setItem("timer_timestamp",timestamp);
+		localStorage.setItem("timer_timestamp", timestamp);
 		console.log(localStorage.getItem("timer_timestamp"));
-		//
+		// show the timer
 		this.running = true;
 	}
 
@@ -166,11 +169,8 @@ class Track
 	stopTimer(xhr_response) 
 	{
 		console.log('----- stopTimer -----', xhr_response);
-		if (xhr_response.error_message) {
-			showError(xhr_response); //show an error if the response failed
-		} else {
-			this.running = false; //reset the timer
-		}
+		this.running = false; //reset the timer
+		this.stop_button.classList.add('hide'); //hide the stop button
 	}
 
 }
