@@ -57,7 +57,7 @@ function convertSecondsToHoursMinutesSeconds(seconds) {
 	let minutes = Math.floor(seconds % 3600 / 60);
 	let secs = Math.floor(seconds % 3600 % 60);
 	// use .slice to return 2 characters from the end
-	return ("0" + hours).slice(-2) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + secs).slice(-2);
+	return (hours) + ":" + ("0" + minutes).slice(-2) + ":" + ("0" + secs).slice(-2);
 }
 
 /**
