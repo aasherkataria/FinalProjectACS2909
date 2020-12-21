@@ -61,8 +61,11 @@ class Reports {
 	{
 		console.log('----- handleProjectChange -----', event);
 		// INSERT YOUR CODE HERE
-
-
+		let selectArray = event.target.children;
+		console.log(selectArray);
+		for (let key in selectArray)
+			console.log(selectArray[key].innerHTML);
+		// console.log(event.target.children[1].innerHTML);
 	}
 
 
