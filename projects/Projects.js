@@ -131,7 +131,7 @@ class Projects {
 		// unhides
 		let formElement = document.getElementById("project_form");
 		formElement.classList.toggle("hide");
-		//formElement.hidden= false;
+		formElement.hidden= false;
 
 		// setting project id to 0 for new project
 		let projectFormID = document.getElementById("form_project_id");
@@ -158,7 +158,7 @@ class Projects {
 		// unhides the form
 		let formElement = document.getElementById("project_form");
 		formElement.classList.remove("hide");
-		//formElement.hidden= false;
+		formElement.hidden= false;
 
 		// setting the form project id to project id of the project to be edited
 		let projectFormID = document.getElementById("form_project_id");
@@ -188,7 +188,7 @@ class Projects {
 		// hides form
 		let formElement = document.getElementById("project_form");
 		formElement.classList.add("hide"); //can be used to hide the html element using css
-		// formElement.hidden = true; 
+		 formElement.hidden = true; 
 
 
 	}
