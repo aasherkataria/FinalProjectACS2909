@@ -71,7 +71,7 @@ class Reports {
 		// the selected value in the array of the select tag
 		let selectedValue = event.target.selectedIndex; 
 		// storing the value in projectOption 
-		this.projectOption=event.target.children[selectedValue].firstChild.data;
+		this.projectOption = event.target.children[selectedValue].firstChild.data;
 		console.log(this.projectOption);
 		// Strings associated with each option in the 
 		let selectedData = event.target.children[selectedValue].firstChild.data;
@@ -189,14 +189,11 @@ class Reports {
 		resultsTable.append(newResults);
 
 		// populate new table body with the corresponding values
-		if(this.projectOption!=null)
-		{
-			results_array.forEach (entry =>{
+		if(this.projectOption != null) {
+			results_array.forEach (entry => {
 				let row = document.createElement('tr');
-			
-		}
-		
-		else if (results_array.length > 0) {
+			}	
+		} else if (results_array.length > 0) {
 			results_array.forEach (entry => {
 			let row = document.createElement('tr');
 				Object.values(entry).forEach(text => {
@@ -256,7 +253,6 @@ class Reports {
 		let entry_val_user;
 		let user;
 		let userID;
-		let projectOption;
 		// select elements for projectID and userID
 		let filter_projectID;
 		let filter_userID;
