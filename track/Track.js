@@ -49,6 +49,7 @@ class Track
 			} else if (this.minutes >= 60) { //if minutes reach 60 add on to the hour
 				this.hours++;
 				this.minutes = 0;
+				this.seconds = 0;
 			}
 		} else {
 			//reset the timer
@@ -163,9 +164,14 @@ class Track
 	stopTimer(xhr_response) 
 	{
 		console.log('----- stopTimer -----', xhr_response);
-		this.running = false; //reset the timer
-		this.start_button.classList.remove('hide'); //show the start button
-		this.stop_button.classList.add('hide'); //hide the stop button
+		
+		// remove the error box if the reponse was a success
+		if (document.contains(document.querySelector(".error_box"))) {
+			document.querySelector('.error_box').remove();
+		} 
+		this.running = false; // reset the timer
+		this.start_button.classList.remove('hide'); // show the start button
+		this.stop_button.classList.add('hide'); // hide the stop button
 	}
 
 }
