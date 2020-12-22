@@ -181,7 +181,7 @@ class Reports {
 
 		results_array = this.sortedArray.filter( item => item.user.includes(selectedData));
 		let project_sorted_array;
-		project_sorted_array=this.sortedArray.filter(item => item.title.includes(this.projectOption));
+		project_sorted_array= results_array.filter(item => item.title.includes(this.projectOption));
 		console.log(project_sorted_array);
 		//remove all the elements from the old table
 		results.remove();
@@ -193,7 +193,7 @@ class Reports {
 		// populate new table body with the corresponding values
 		if(this.projectOption!=null)
 		{
-			project_sorted_array.forEach (entry =>{
+			project_sorted_array.forEach (entry => {
 				let row = document.createElement('tr');
 				Object.values(entry).forEach(text => {
 					let cell = document.createElement('td');
@@ -202,9 +202,9 @@ class Reports {
 					row.appendChild(cell);
 				}) 
 				newResults.appendChild(row);
-		});
+			});
 		
-	else if (results_array.length > 0) {
+		} else if (results_array.length > 0) {
 			results_array.forEach (entry => {
 			let row = document.createElement('tr');
 				Object.values(entry).forEach(text => {
