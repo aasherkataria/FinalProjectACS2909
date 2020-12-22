@@ -88,7 +88,7 @@ class Reports {
 		results_array = this.sortedArray.filter( item => item.title.includes(selectedData));
 		// creating user sorted array
 		let user_sorted_array;
-		user_sorted_array=results_array.filter(item => item.user.includes(this.userOption));
+		user_sorted_array = results_array.filter(item => item.user.includes(this.userOption));
 		//remove all the elements from the old table
 		results.remove();
 
@@ -97,44 +97,60 @@ class Reports {
 		resultsTable.append(newResults);
 
 		// populate new table body with the corresponding values
-		if(this.userOption!=null)
-		{
-			user_sorted_array.forEach (entry => {
-				let row = document.createElement('tr');
-				Object.values(entry).forEach(text => {
-					let cell = document.createElement('td');
-					let textNode = document.createTextNode(text);
-					cell.appendChild(textNode);
-					row.appendChild(cell);
-				}) 
-				newResults.appendChild(row);
-			});
-		}
-		else if (results_array.length > 0) {
-			results_array.forEach (entry => {
-			let row = document.createElement('tr');
-				Object.values(entry).forEach(text => {
-					let cell = document.createElement('td');
-					let textNode = document.createTextNode(text);
-					cell.appendChild(textNode);
-					row.appendChild(cell);
-				}) 
-				newResults.appendChild(row);
-			});
-		} else {
+
+		if (this.projectOption === 'All Projects') {
+			// show all projects
+			this.loadTable(this.sortedArray, newResults);
+			this.projectOption = null;
 			// show all projects 
-			this.sortedArray.forEach (entry => {
-			let row = document.createElement('tr');
-				Object.values(entry).forEach(text => {
-					let cell = document.createElement('td');
-					let textNode = document.createTextNode(text);
-					cell.appendChild(textNode);
-					row.appendChild(cell);
-				}) 
-				newResults.appendChild(row);
-				this.projectOption = null;
-			});
+		// 	this.sortedArray.forEach (entry => {
+		// 	let row = document.createElement('tr');
+		// 		Object.values(entry).forEach(text => {
+		// 			let cell = document.createElement('td');
+		// 			let textNode = document.createTextNode(text);
+		// 			cell.appendChild(textNode);
+		// 			row.appendChild(cell);
+		// 		}) 
+		// 		newResults.appendChild(row);
+		// 		this.projectOption = null;
+		// 	});
+		} else if (results_array.length > 0) {
+			if (this.userOption == null) {
+				this.loadTable(results_array, newResults);
+			} else {
+				this.loadTable(user_sorted_array, newResults);
+			}
 		}
+
+		// if(this.userOption!=null)
+		// {
+		// 	user_sorted_array.forEach (entry => {
+		// 		let row = document.createElement('tr');
+		// 		Object.values(entry).forEach(text => {
+		// 			let cell = document.createElement('td');
+		// 			let textNode = document.createTextNode(text);
+		// 			cell.appendChild(textNode);
+		// 			row.appendChild(cell);
+		// 		}) 
+		// 		newResults.appendChild(row);
+		// 	});
+		// }
+		// else if (results_array.length > 0) {
+		// 	results_array.forEach (entry => {
+		// 	let row = document.createElement('tr');
+		// 		Object.values(entry).forEach(text => {
+		// 			let cell = document.createElement('td');
+		// 			let textNode = document.createTextNode(text);
+		// 			cell.appendChild(textNode);
+		// 			row.appendChild(cell);
+		// 		}) 
+		// 		newResults.appendChild(row);
+		// 	});
+		// } else {
+
+		// }
+
+
 		//  console.log(results);
 		
 	}
@@ -190,13 +206,15 @@ class Reports {
 		// the selected value in the array of the select tag
 		let selectedValue = event.target.selectedIndex; 
 		//storing the value in userOption
-		this.userOption=event.target.children[selectedValue].firstChild.data;
+		this.userOption= event.target.children[selectedValue].textContent;
 		console.log(this.userOption);
 		// Strings associated with each option in the 
 		let selectedData = event.target.children[selectedValue].firstChild.data;
 
 		// console.log(selectedValue);
 		// console.log(selectedData);
+
+		console.log(this.userOption);
 
 		// create a new array matching the corresponding selections 
 		let results_array;
@@ -214,43 +232,67 @@ class Reports {
 		resultsTable.append(newResults);
 
 		// populate new table body with the corresponding values
-		if(this.projectOption != null)
-		{
-			project_sorted_array.forEach (entry => {
-				let row = document.createElement('tr');
-				Object.values(entry).forEach(text => {
-					let cell = document.createElement('td');
-					let textNode = document.createTextNode(text);
-					cell.appendChild(textNode);
-					row.appendChild(cell);
-				}) 
-				newResults.appendChild(row);
-			});
-		
-		} else if (results_array.length > 0) {
-			results_array.forEach (entry => {
-			let row = document.createElement('tr');
-				Object.values(entry).forEach(text => {
-					let cell = document.createElement('td');
-					let textNode = document.createTextNode(text);
-					cell.appendChild(textNode);
-					row.appendChild(cell);
-				}) 
-				newResults.appendChild(row);
-			});
-		} else {
+		if (this.userOption === 'All Users') {
+			// show all projects
+			this.loadTable(this.sortedArray, newResults);
+			this.userOption = null;
 			// show all projects 
-			this.sortedArray.forEach (entry => {
-			let row = document.createElement('tr');
-				Object.values(entry).forEach(text => {
-					let cell = document.createElement('td');
-					let textNode = document.createTextNode(text);
-					cell.appendChild(textNode);
-					row.appendChild(cell);
-				}) 
-				newResults.appendChild(row);
-			});
+		// 	this.sortedArray.forEach (entry => {
+		// 	let row = document.createElement('tr');
+		// 		Object.values(entry).forEach(text => {
+		// 			let cell = document.createElement('td');
+		// 			let textNode = document.createTextNode(text);
+		// 			cell.appendChild(textNode);
+		// 			row.appendChild(cell);
+		// 		}) 
+		// 		newResults.appendChild(row);
+		// 		this.projectOption = null;
+		// 	});
+		} else if (results_array.length > 0) {
+			if (this.userOption == null) {
+				this.loadTable(results_array, newResults);
+			} else {
+				this.loadTable(project_sorted_array, newResults);
+			}
 		}
+
+		// if(strValue(this.projectOption === 'All Projects'))
+		// {
+		// 	project_sorted_array.forEach (entry => {
+		// 		let row = document.createElement('tr');
+		// 		Object.values(entry).forEach(text => {
+		// 			let cell = document.createElement('td');
+		// 			let textNode = document.createTextNode(text);
+		// 			cell.appendChild(textNode);
+		// 			row.appendChild(cell);
+		// 		}) 
+		// 		newResults.appendChild(row);
+		// 	});
+		
+		// } else if (results_array.length > 0) {
+		// 	results_array.forEach (entry => {
+		// 	let row = document.createElement('tr');
+		// 		Object.values(entry).forEach(text => {
+		// 			let cell = document.createElement('td');
+		// 			let textNode = document.createTextNode(text);
+		// 			cell.appendChild(textNode);
+		// 			row.appendChild(cell);
+		// 		}) 
+		// 		newResults.appendChild(row);
+		// 	});
+		// } else {
+		// 	// show all projects 
+		// 	this.sortedArray.forEach (entry => {
+		// 	let row = document.createElement('tr');
+		// 		Object.values(entry).forEach(text => {
+		// 			let cell = document.createElement('td');
+		// 			let textNode = document.createTextNode(text);
+		// 			cell.appendChild(textNode);
+		// 			row.appendChild(cell);
+		// 		}) 
+		// 		newResults.appendChild(row);
+		// 	});
+		// }
 
 	}
 
@@ -367,19 +409,18 @@ class Reports {
 		}	
 
 		// create a row of data cells for each entry
-		this.sortedArray.forEach (entry => {
-		let row = document.createElement('tr');
-			Object.values(entry).forEach(text => {
-				let cell = document.createElement('td');
-				let textNode = document.createTextNode(text);
-				cell.appendChild(textNode);
-				row.appendChild(cell);
-			}) 
-			results.appendChild(row);
-		});
+		// this.sortedArray.forEach (entry => {
+		// let row = document.createElement('tr');
+		// 	Object.values(entry).forEach(text => {
+		// 		let cell = document.createElement('td');
+		// 		let textNode = document.createTextNode(text);
+		// 		cell.appendChild(textNode);
+		// 		row.appendChild(cell);
+		// 	}) 
+		// 	results.appendChild(row);
+		// });
 
-		// return the sorted array
-		return this.sortedArray;
+		this.loadTable(this.sortedArray, results);
 
 	}
 
@@ -405,5 +446,24 @@ class Reports {
 
 	}
 
+
+
+	/**
+	 * 
+	 * @param {Array} data An array of objects  
+	 * @param {*} tbodyElement 
+	 */
+	loadTable(data, tbodyElement) {
+		data.forEach (entry => {
+		let row = document.createElement('tr');
+			Object.values(entry).forEach(text => {
+				let cell = document.createElement('td');
+				let textNode = document.createTextNode(text);
+				cell.appendChild(textNode);
+				row.appendChild(cell);
+			}) 
+			tbodyElement.appendChild(row);
+		});
+	}
 
 }
