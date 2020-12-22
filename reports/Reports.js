@@ -249,7 +249,7 @@ class Reports {
 		// 		this.projectOption = null;
 		// 	});
 		} else if (results_array.length > 0) {
-			if (this.userOption == null) {
+			if (this.projectOption == null) {
 				this.loadTable(results_array, newResults);
 			} else {
 				this.loadTable(project_sorted_array, newResults);
