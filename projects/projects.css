@@ -35,7 +35,7 @@
     FORM STYLING
 */
 #project_form{
-    /*position: fixed -- if you want it to be 100px from the top of the window*/
+    position: fixed; /*-- if you want it to be 100px from the top of the window */
     display: flex;
     flex-direction: column;
     width: 300px;

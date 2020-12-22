@@ -142,7 +142,6 @@ class Reports {
 		console.log('----- fillUsersWithResponse -----', xhr_response);
 		// INSERT YOUR CODE HERE
 		const users = document.getElementById('user_id');
-		const userName = document.createElement('option');
 		this.users = xhr_response;
 		console.log('USERS: ', this.users);
 		for( let obj in xhr_response){
