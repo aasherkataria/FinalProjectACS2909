@@ -52,7 +52,7 @@
 }
 
 #counter{
-    position: 10px;
+    margin-top: 10px;
     font-family: 'Courier New', Courier, monospace;
     text-align: center;
     font-size: 80px;
