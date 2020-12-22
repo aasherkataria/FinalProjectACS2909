@@ -86,7 +86,9 @@ class Reports {
 		let results_array;
 
 		results_array = this.sortedArray.filter( item => item.title.includes(selectedData));
-
+		// creating user sorted array
+		let user_sorted_array;
+		user_sorted_array=results_array.filter(item => item.user.includes(this.userOption));
 		//remove all the elements from the old table
 		results.remove();
 
@@ -95,7 +97,20 @@ class Reports {
 		resultsTable.append(newResults);
 
 		// populate new table body with the corresponding values
-		if (results_array.length > 0) {
+		if(this.userOption!=null)
+		{
+			user_sorted_array.forEach (entry => {
+				let row = document.createElement('tr');
+				Object.values(entry).forEach(text => {
+					let cell = document.createElement('td');
+					let textNode = document.createTextNode(text);
+					cell.appendChild(textNode);
+					row.appendChild(cell);
+				}) 
+				newResults.appendChild(row);
+			});
+		}
+		else if (results_array.length > 0) {
 			results_array.forEach (entry => {
 			let row = document.createElement('tr');
 				Object.values(entry).forEach(text => {
@@ -174,6 +189,9 @@ class Reports {
 
 		// the selected value in the array of the select tag
 		let selectedValue = event.target.selectedIndex; 
+		//storing the value in userOption
+		this.userOption=event.target.children[selectedValue].firstChild.data;
+		console.log(this.userOption);
 		// Strings associated with each option in the 
 		let selectedData = event.target.children[selectedValue].firstChild.data;
 
