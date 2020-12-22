@@ -35,11 +35,18 @@
     FORM STYLING
 */
 #project_form{
+    /*position: fixed -- if you want it to be 100px from the top of the window*/
+    display: flex;
+    flex-direction: column;
     width: 300px;
-    margin: auto;
-    padding: 10px;
+    align-items: center;
+    top: 100px;
     background-color: #343434;
-    
+}
+
+#project_form input {
+    margin-top: 10px;
+    padding: 5px;
 }
 
 #submit_button{
@@ -50,11 +57,12 @@
     cursor: pointer;
 }
 
-/*
+/* 
    HIDING FORMS
-   if using classList in js to make css changes
-   .hide {
-    display: none !important;
-    }
-
+   if using classList in js to make css changes 
 */
+.hide {
+    display: none !important;
+}
+
+

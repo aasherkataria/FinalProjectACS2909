@@ -104,9 +104,6 @@ class Track
 			end_time : convertTimestampToDateFormat(Date.now())
 		};
 
-		this.stop_button.classList.toggle('hide');
-		this.start_button.classList.toggle('hide');
-
 		this.track_form.reset();
 
 		api.makeRequest('POST', "/t-api/projects/entries", time_entry, this.stopTimer.bind(this));
@@ -167,6 +164,7 @@ class Track
 	{
 		console.log('----- stopTimer -----', xhr_response);
 		this.running = false; //reset the timer
+		this.start_button.classList.remove('hide'); //show the start button
 		this.stop_button.classList.add('hide'); //hide the stop button
 	}
 
