@@ -114,6 +114,7 @@ class Reports {
 					row.appendChild(cell);
 				}) 
 				newResults.appendChild(row);
+				this.projectOption = null;
 			});
 		}
 		//  console.log(results);
@@ -173,16 +174,17 @@ class Reports {
 		// Strings associated with each option in the 
 		let selectedData = event.target.children[selectedValue].firstChild.data;
 
-		console.log(selectedValue);
-		console.log(selectedData);
+		// console.log(selectedValue);
+		// console.log(selectedData);
 
 		// create a new array matching the corresponding selections 
 		let results_array;
 
 		results_array = this.sortedArray.filter( item => item.user.includes(selectedData));
 		let project_sorted_array;
-		project_sorted_array= results_array.filter(item => item.title.includes(this.projectOption));
-		console.log(project_sorted_array);
+		// filter to only include entries that were created by the user in a specific project
+		project_sorted_array = results_array.filter(item => item.title.includes(this.projectOption));
+		// console.log(project_sorted_array);
 		//remove all the elements from the old table
 		results.remove();
 
