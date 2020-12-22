@@ -195,8 +195,14 @@ class Reports {
 		{
 			project_sorted_array.forEach (entry =>{
 				let row = document.createElement('tr');
-			
-		}
+				Object.values(entry).forEach(text => {
+					let cell = document.createElement('td');
+					let textNode = document.createTextNode(text);
+					cell.appendChild(textNode);
+					row.appendChild(cell);
+				}) 
+				newResults.appendChild(row);
+		});
 		
 	else if (results_array.length > 0) {
 			results_array.forEach (entry => {
