@@ -11,8 +11,6 @@ class TimeTrackerApi {
 		this.api_key = api_key;
 		this.base_url = base_url;
 
-		// INSERT YOUR CODE HERE
-
 	}
 
 	/**
@@ -20,7 +18,7 @@ class TimeTrackerApi {
 	 * @param {string} method The method necessary to make the XMLHTTPRequest 
 	 * @param {string} path The path appended to the url  
 	 * @param {object} parameters An object of values that are passed for API calls that require additional information being passed.
-	 * @callback success_handler is a callback function provided by the caller which is to be called if the response is successfu
+	 * @callback success_handler is a callback function provided by the caller which is to be called if the response is successful.
 	 */
 	makeRequest(method, path, parameters = {}, success_handler = false)
 	{
@@ -29,12 +27,9 @@ class TimeTrackerApi {
 			{
 				'method' : method,
 				'path' : path,
-				'parameters' : parameters, // remove after debugging
 				'handler': success_handler
 			});
 
-		
-		// INSERT YOUR CODE HERE
 		//create an xhr with the object provided
 		const xhr = new XMLHttpRequest();
 		//url object that has base url and path attached
@@ -55,8 +50,7 @@ class TimeTrackerApi {
 		//send the request
 		if (method === 'POST' || method === 'PATCH'){
 			xhr.send(formDataPost);
-		}
-		else {
+		} else {
 			xhr.send();
 		}
 		//let the xhrRequestHandler handle the errors and success for the request
@@ -78,12 +72,11 @@ class TimeTrackerApi {
 	{
 
 		console.log('----- xhrRequestHandler -----', xhr.responseURL);
-			// INSERT YOUR CODE HERE
 
-				if (xhr.response.error_message) {
-					showError(xhr.response);
-				} else {
-					success_handler(xhr.response);
-				}
+			if (xhr.response.error_message) {
+				showError(xhr.response);
+			} else {
+				success_handler(xhr.response);
+			}
 	}
 }

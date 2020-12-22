@@ -9,10 +9,13 @@ class Reports {
 	{
 		this.api = api;
 		this.company_id = company_id;
-		this.projects; //list of projects
-		this.users; //list of users
+		this.projects; // list of projects
+		this.users; // list of users
 
-		this.sortedArray = new Array(); //sorted array
+		this.projectOption; // options from the project dropdown
+		this.userOption; // options from the users dropdown
+
+		this.sortedArray = new Array(); // sorted array
 
 		this.loadProjects();		
 		this.loadUsers();
@@ -73,7 +76,7 @@ class Reports {
 		// storing the value in projectOption 
 		this.projectOption = event.target.children[selectedValue].firstChild.data;
 		console.log(this.projectOption);
-		// Strings associated with each option in the 
+		// Strings associated with each option in the dropdown
 		let selectedData = event.target.children[selectedValue].firstChild.data;
 
 		// console.log(selectArray);
@@ -193,7 +196,7 @@ class Reports {
 		resultsTable.append(newResults);
 
 		// populate new table body with the corresponding values
-		if(this.projectOption!=null)
+		if(this.projectOption != null)
 		{
 			project_sorted_array.forEach (entry => {
 				let row = document.createElement('tr');
