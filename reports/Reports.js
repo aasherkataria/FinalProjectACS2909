@@ -162,6 +162,55 @@ class Reports {
 	{
 		console.log('----- handleUserChange -----', event);
 		// INSERT YOUR CODE HERE
+		let results = document.getElementById('results').children[1]; //grab the old tbody element
+		let resultsTable = document.getElementById('results');
+		// console.log(this.sortedArray);
+
+		// the selected value in the array of the select tag
+		let selectedValue = event.target.selectedIndex; 
+		// Strings associated with each option in the 
+		let selectedData = event.target.children[selectedValue].firstChild.data;
+
+		console.log(selectedValue);
+		console.log(selectedData);
+
+		// create a new array matching the corresponding selections 
+		let results_array;
+
+		results_array = this.sortedArray.filter( item => item.user.includes(selectedData));
+
+		//remove all the elements from the old table
+		results.remove();
+
+		// create a fresh table body with no elements
+		let newResults = document.createElement('tbody');
+		resultsTable.append(newResults);
+
+		// populate new table body with the corresponding values
+		if (results_array.length > 0) {
+			results_array.forEach (entry => {
+			let row = document.createElement('tr');
+				Object.values(entry).forEach(text => {
+					let cell = document.createElement('td');
+					let textNode = document.createTextNode(text);
+					cell.appendChild(textNode);
+					row.appendChild(cell);
+				}) 
+				newResults.appendChild(row);
+			});
+		} else {
+			// show all projects 
+			this.sortedArray.forEach (entry => {
+			let row = document.createElement('tr');
+				Object.values(entry).forEach(text => {
+					let cell = document.createElement('td');
+					let textNode = document.createTextNode(text);
+					cell.appendChild(textNode);
+					row.appendChild(cell);
+				}) 
+				newResults.appendChild(row);
+			});
+		}
 
 	}
 
@@ -187,7 +236,6 @@ class Reports {
 		// INSERT YOUR CODE HERE
 		// initialize variables
 		let results = document.getElementById('results').children[1]; //grab the tbody element
-		let reports;
 		let time;
 		let start_time;
 		let end_time;
@@ -217,7 +265,7 @@ class Reports {
 				if (userID == this.users[props].user_id) {
 					user = document.createElement('td');
 					user.textContent = `${this.users[props].last_name}, ${this.users[props].first_name}`;
-					entry_val_user = this.users[props].last_name+" "+this.users[props].first_name;
+					entry_val_user = this.users[props].first_name+" "+this.users[props].last_name;
 				}
 			}
 
