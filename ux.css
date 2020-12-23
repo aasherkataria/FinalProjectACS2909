@@ -89,6 +89,10 @@ nav a:hover {
 }
 
 
+#results thead th {
+  padding: 2px;
+}
+
 /**
   JavaScript Modifications
   -----------------------------------
