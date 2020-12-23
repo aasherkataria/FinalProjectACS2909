@@ -307,12 +307,6 @@ class Reports {
 			this.sortedArray.push(entryArray[j]);
 		}	
 
-		let state = {
-			querySet : this.sortedArray,
-			page : 1,
-			rows : 5
-		}
-
 		// show all the rows in the table
 		this.loadTable(this.sortedArray, results);
 	}
