@@ -102,18 +102,6 @@ class Reports {
 			// show all projects
 			this.loadTable(this.sortedArray, newResults);
 			this.projectOption = null;
-			// show all projects 
-		// 	this.sortedArray.forEach (entry => {
-		// 	let row = document.createElement('tr');
-		// 		Object.values(entry).forEach(text => {
-		// 			let cell = document.createElement('td');
-		// 			let textNode = document.createTextNode(text);
-		// 			cell.appendChild(textNode);
-		// 			row.appendChild(cell);
-		// 		}) 
-		// 		newResults.appendChild(row);
-		// 		this.projectOption = null;
-		// 	});
 		} else if (results_array.length > 0) {
 			if (this.userOption == null) {
 				this.loadTable(results_array, newResults);
@@ -121,38 +109,6 @@ class Reports {
 				this.loadTable(user_sorted_array, newResults);
 			}
 		}
-
-		// if(this.userOption!=null)
-		// {
-		// 	user_sorted_array.forEach (entry => {
-		// 		let row = document.createElement('tr');
-		// 		Object.values(entry).forEach(text => {
-		// 			let cell = document.createElement('td');
-		// 			let textNode = document.createTextNode(text);
-		// 			cell.appendChild(textNode);
-		// 			row.appendChild(cell);
-		// 		}) 
-		// 		newResults.appendChild(row);
-		// 	});
-		// }
-		// else if (results_array.length > 0) {
-		// 	results_array.forEach (entry => {
-		// 	let row = document.createElement('tr');
-		// 		Object.values(entry).forEach(text => {
-		// 			let cell = document.createElement('td');
-		// 			let textNode = document.createTextNode(text);
-		// 			cell.appendChild(textNode);
-		// 			row.appendChild(cell);
-		// 		}) 
-		// 		newResults.appendChild(row);
-		// 	});
-		// } else {
-
-		// }
-
-
-		//  console.log(results);
-		
 	}
 
 
@@ -201,20 +157,13 @@ class Reports {
 		// INSERT YOUR CODE HERE
 		let results = document.getElementById('results').children[1]; //grab the old tbody element
 		let resultsTable = document.getElementById('results');
-		// console.log(this.sortedArray);
 
 		// the selected value in the array of the select tag
 		let selectedValue = event.target.selectedIndex; 
 		//storing the value in userOption
-		this.userOption= event.target.children[selectedValue].textContent;
-		console.log(this.userOption);
+		this.userOption = event.target.children[selectedValue].textContent;
 		// Strings associated with each option in the 
 		let selectedData = event.target.children[selectedValue].firstChild.data;
-
-		// console.log(selectedValue);
-		// console.log(selectedData);
-
-		console.log(this.userOption);
 
 		// create a new array matching the corresponding selections 
 		let results_array;
@@ -223,7 +172,7 @@ class Reports {
 		let project_sorted_array;
 		// filter to only include entries that were created by the user in a specific project
 		project_sorted_array = results_array.filter(item => item.title.includes(this.projectOption));
-		// console.log(project_sorted_array);
+		
 		//remove all the elements from the old table
 		results.remove();
 
@@ -236,18 +185,6 @@ class Reports {
 			// show all projects
 			this.loadTable(this.sortedArray, newResults);
 			this.userOption = null;
-			// show all projects 
-		// 	this.sortedArray.forEach (entry => {
-		// 	let row = document.createElement('tr');
-		// 		Object.values(entry).forEach(text => {
-		// 			let cell = document.createElement('td');
-		// 			let textNode = document.createTextNode(text);
-		// 			cell.appendChild(textNode);
-		// 			row.appendChild(cell);
-		// 		}) 
-		// 		newResults.appendChild(row);
-		// 		this.projectOption = null;
-		// 	});
 		} else if (results_array.length > 0) {
 			if (this.projectOption == null) {
 				this.loadTable(results_array, newResults);
@@ -255,44 +192,6 @@ class Reports {
 				this.loadTable(project_sorted_array, newResults);
 			}
 		}
-
-		// if(strValue(this.projectOption === 'All Projects'))
-		// {
-		// 	project_sorted_array.forEach (entry => {
-		// 		let row = document.createElement('tr');
-		// 		Object.values(entry).forEach(text => {
-		// 			let cell = document.createElement('td');
-		// 			let textNode = document.createTextNode(text);
-		// 			cell.appendChild(textNode);
-		// 			row.appendChild(cell);
-		// 		}) 
-		// 		newResults.appendChild(row);
-		// 	});
-		
-		// } else if (results_array.length > 0) {
-		// 	results_array.forEach (entry => {
-		// 	let row = document.createElement('tr');
-		// 		Object.values(entry).forEach(text => {
-		// 			let cell = document.createElement('td');
-		// 			let textNode = document.createTextNode(text);
-		// 			cell.appendChild(textNode);
-		// 			row.appendChild(cell);
-		// 		}) 
-		// 		newResults.appendChild(row);
-		// 	});
-		// } else {
-		// 	// show all projects 
-		// 	this.sortedArray.forEach (entry => {
-		// 	let row = document.createElement('tr');
-		// 		Object.values(entry).forEach(text => {
-		// 			let cell = document.createElement('td');
-		// 			let textNode = document.createTextNode(text);
-		// 			cell.appendChild(textNode);
-		// 			row.appendChild(cell);
-		// 		}) 
-		// 		newResults.appendChild(row);
-		// 	});
-		// }
 
 	}
 
@@ -302,6 +201,10 @@ class Reports {
 	//
 	/////////////////////////////////////////////
 
+	/**
+	 * The loadTimeEntries method makes a request to the API and loads the time entries in
+	 * only after the users and projects dropdown lists are populated.
+	 */
 	loadTimeEntries()
 	{
 		console.log('----- loadTimeEntries -----');
@@ -312,6 +215,11 @@ class Reports {
 		}
 	}
 
+	/**
+	 * The fillTimeEntriesWithResponse method takes
+	 * @param {Object} xhr_response An api response containing information related to each time entry.
+	 * And creates a table with each entry sorted from newest to oldest
+	 */
 	fillTimeEntriesWithResponse(xhr_response)
 	{
 		console.log('----- fillTimeEntriesWithResponse -----', xhr_response);
@@ -324,46 +232,39 @@ class Reports {
 		let seconds;
 		let date;
 		let projectID; 
-		let title;
 		let entry_val_title;
 		let entry_val_user;
-		let user;
 		let userID;
+
 		// select elements for projectID and userID
 		let filter_projectID;
 		let filter_userID;
 
 		let i = 0;
 		let entryArray = new Array();
-		// let sorted = new Array();
 
+		// provides access to every object in the xhr response
 		for (let key in xhr_response) {
 
-			// lists out user by first and last name
+			// gets the user id from the xhr response
 			userID = xhr_response[key].user_id;
+			// finds the user associated with the same id and stores it in entry_val_user
 			for (let props in this.users) {
-				// compare the user id with each time entry with the user id in the object this.users
+				// compare the user id and each time entry with the user id in the object this.users
 				if (userID == this.users[props].user_id) {
-					user = document.createElement('td');
-					user.textContent = `${this.users[props].last_name}, ${this.users[props].first_name}`;
 					entry_val_user = this.users[props].first_name+" "+this.users[props].last_name;
 				}
 			}
 
-			// calculate the time
+			// calculate the seconds by separating the hours, minutes, and seconds into strings
 			start_time = xhr_response[key].start_time.substr(10).split(':');
 			end_time = xhr_response[key].end_time.substr(10).split(':');
 			seconds = ((+end_time[0]) * 60 * 60 + (+end_time[1]) * 60 + (+end_time[2])) - ((+start_time[0]) * 60 * 60 + (+start_time[1]) * 60 + (+start_time[2]));
-			time = document.createElement('td');
-			time.textContent = convertSecondsToHoursMinutesSeconds(seconds);
-
 
 			// creating the title
 			projectID = xhr_response[key].project_id;
 			for (let props in this.projects) {
 				if (projectID == this.projects[props].project_id) {
-					title = document.createElement('td');
-					title.textContent = this.projects[props].title;
 					entry_val_title = this.projects[props].title;
 				}
 			}
@@ -379,8 +280,7 @@ class Reports {
 			let date_entry = document.createElement('td');
 			date_entry.textContent = start_date;
 
-
-			// create an array of objects with each time entry
+			// create an array of objects for each time entry
 			entryArray[i] = {
 				title : entry_val_title,
 				project : xhr_response[key].description,
@@ -401,25 +301,12 @@ class Reports {
 		filter_projectID.addEventListener('change', (event) => {this.handleProjectChange(event)});
 		filter_userID.addEventListener('change', (event) => {this.handleUserChange(event)});
 
-		//console.log(entryArray);
-
 		// sort the array from newest entries to oldest entries
 		for (let j = entryArray.length - 1; j>=0; j--) {
 			this.sortedArray.push(entryArray[j]);
 		}	
 
-		// create a row of data cells for each entry
-		// this.sortedArray.forEach (entry => {
-		// let row = document.createElement('tr');
-		// 	Object.values(entry).forEach(text => {
-		// 		let cell = document.createElement('td');
-		// 		let textNode = document.createTextNode(text);
-		// 		cell.appendChild(textNode);
-		// 		row.appendChild(cell);
-		// 	}) 
-		// 	results.appendChild(row);
-		// });
-
+		// show all the rows in the table
 		this.loadTable(this.sortedArray, results);
 
 	}
@@ -446,12 +333,11 @@ class Reports {
 
 	}
 
-
-
 	/**
-	 * 
-	 * @param {Array} data An array of objects  
-	 * @param {*} tbodyElement 
+	 * The loadTable method takes
+	 * @param {Array} data An array of objects containing user or project information.
+	 * @param {*} tbodyElement A reference to the table body to which the rows will be appended.
+	 * And creates a table with the requested rows
 	 */
 	loadTable(data, tbodyElement) {
 		data.forEach (entry => {
