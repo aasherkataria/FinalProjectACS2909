@@ -27,7 +27,10 @@ class Reports {
 	//
 	/////////////////////////////////////////////
 
-
+	/**
+	 * The loadProjects method makes an API request to retrieve the list
+	 * of projects and information related to them.
+	 */
 	loadProjects()
 	{
 		console.log('----- loadProjects -----');
@@ -41,6 +44,11 @@ class Reports {
 
 	}
 
+	/**
+	 * The fillProjectsWithResponse method takes 
+	 * @param {Object} xhr_response An object containing information about each project entry 
+	 * and populates the select value with options that include the title of the project.
+	 */
 	fillProjectsWithResponse(xhr_response)
 	{
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
@@ -63,13 +71,17 @@ class Reports {
 		this.loadTimeEntries();
 	}
 
+	/**
+	 * The handleProjectChange method takes
+	 * @param {event} event A change event that triggers when the user selects an option from the dropdwon list.
+	 * And displays the projects based on the active selection.
+	 */
 	handleProjectChange(event)
 	{
 		console.log('----- handleProjectChange -----', event);
 		// INSERT YOUR CODE HERE
 		let results = document.getElementById('results').children[1]; //grab the old tbody element
 		let resultsTable = document.getElementById('results');
-		// console.log(this.sortedArray);
 
 		// the selected value in the array of the select tag
 		let selectedValue = event.target.selectedIndex; 
@@ -79,9 +91,6 @@ class Reports {
 		// Strings associated with each option in the dropdown
 		let selectedData = event.target.children[selectedValue].firstChild.data;
 
-		// console.log(selectArray);
-		// console.log(selectedValue);
-		
 		// create a new array matching the corresponding selections 
 		let results_array;
 
@@ -102,7 +111,7 @@ class Reports {
 			// show all projects
 			this.loadTable(this.sortedArray, newResults);
 			this.projectOption = null;
-		} else if (results_array.length > 0) {
+		} else if (results_array.length > 0) { // makes sure that there are results to be shown or else shows nothing
 			if (this.userOption == null) {
 				this.loadTable(results_array, newResults);
 			} else {
@@ -119,6 +128,10 @@ class Reports {
 	/////////////////////////////////////////////
 
 
+	/**
+	 * The loadUsers method makes a request to the API to retrieve
+	 * information about the user.
+	 */
 	loadUsers()
 	{
 		console.log('----- loadUsers -----');
@@ -131,6 +144,11 @@ class Reports {
 		}
 	}
 
+	/**
+	 * The fillUsersWithResponse method takes
+	 * @param {Object} xhr_response An object containing user information
+	 * and populates the filter form with user names of each user.
+	 */
 	fillUsersWithResponse(xhr_response)
 	{
 		console.log('----- fillUsersWithResponse -----', xhr_response);
@@ -151,6 +169,11 @@ class Reports {
 		this.loadTimeEntries();
 	}
 
+	/**
+	 * The handleUserChange method takes
+	 * @param {event} event A new selection of a different user.
+	 * and displays reports based on the user who is selected.
+	 */
 	handleUserChange(event)
 	{
 		console.log('----- handleUserChange -----', event);
@@ -184,9 +207,10 @@ class Reports {
 		if (this.userOption === 'All Users') {
 			// show all projects
 			this.loadTable(this.sortedArray, newResults);
-
+			// 'All Users' is selected - store it globally
 			this.userOption = null;
-		} else if (results_array.length > 0) {
+			
+		} else if (results_array.length > 0) {// make sure to only show the array if there is content
 			if (this.projectOption == null) {
 				this.loadTable(results_array, newResults);
 			} else {
