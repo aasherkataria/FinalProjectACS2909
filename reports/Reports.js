@@ -17,8 +17,6 @@ class Reports {
 
 		this.sortedArray = new Array(); // sorted array
 
-		this.state;
-
 		this.loadProjects();		
 		this.loadUsers();
 	}
@@ -309,16 +307,17 @@ class Reports {
 			this.sortedArray.push(entryArray[j]);
 		}	
 
-		this.state = {
+		let state = {
 			querySet : this.sortedArray,
 			page : 1,
 			rows : 5
 		}
 
 		// show all the rows in the table
-		this.loadTable(this.sortedArray, results);
+		//this.loadTable(this.sortedArray, results);
 
-		// this.buildPaginationTable();
+		console.log(results);
+		buildPaginationTable(state, results);
 
 	}
 
@@ -332,7 +331,7 @@ class Reports {
 	{
 		let timeString = time[0] + ":" + time[1];
 		let dayString = month(date[1]) + " " + date[2] + ", " + date[0] + " ";
-		let dateFormat= dayString + timeString;
+		let dateFormat = dayString + timeString;
 
 		return dateFormat;
 
@@ -352,10 +351,6 @@ class Reports {
 	 * And creates a table with the requested rows
 	 */
 	loadTable(data, tbodyElement) {
-		let temp = this.pagination(this.state.querySet, this.state.page, this.state.rows);
-
-		console.log('Data: ', temp);
-
 		data.forEach (entry => {
 		let row = document.createElement('tr');
 			Object.values(entry).forEach(text => {
@@ -368,41 +363,6 @@ class Reports {
 		});
 	}
 
-	pagination(querySet, page, rows) {
-		let trimStart = (page - 1) * rows;
-		let trimEnd = trimStart + rows;
 
-		let trimmedData = querySet.slice(trimStart, trimEnd);
-
-		let pages = Math.ceil(querySet.length / rows);
-
-		return {
-			'querySet' : trimmedData,
-			'pages' : pages
-		}
-	}
-
-	/**
-	 * The buildPaginationTable method takes
-	 * @param {Array} data An array of objects containing user or project information.
-	 * @param {variable} tbodyElement A reference to the table body to which the rows will be appended.
-	 * And creates a table with the requested rows
-	 */
-	buildPaginationTable() {
-		let temp = this.pagination(this.state.querySet, this.state.page, this.state.rows);
-
-		console.log('Data: ', temp);
-
-		data.forEach (entry => {
-		let row = document.createElement('tr');
-			Object.values(entry).forEach(text => {
-				let cell = document.createElement('td');
-				let textNode = document.createTextNode(text);
-				cell.appendChild(textNode);
-				row.appendChild(cell);
-			}) 
-			tbodyElement.appendChild(row);
-		});
-	}
 
 }
