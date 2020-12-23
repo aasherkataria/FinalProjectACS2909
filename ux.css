@@ -7,10 +7,7 @@
 body {
   background-color: #f5f5f5;
 }
- 
-nav a {
-  text-decoration: none;
-}
+
 
 /**
   This is additional styling to make the content box look less clunky
@@ -21,6 +18,10 @@ nav a {
   border: none !important; /* override the default border as defined in the instructions since it hinders the affect of the page separation created by the box-shadow */
   border-radius: 4px;
   background-color: #fff;
+  overflow-y: auto; /*allow scrolling if the content gets larger than the window*/
+  margin-bottom: 10px; /*prevent content that is too long from being hidden*/
+  margin-top: 60px !important; /* override default margin from top as defined in instructions to allow
+   content to sit below the page header which is fixed and prevents bottom of page from being cut off*/
 }
 
 #new_project_button {
@@ -34,7 +35,7 @@ a {
 }
 
 /**
-  Make the table look more uniform
+  Make the table look more uniform and remove the border from the last element
 */
 
 table {
@@ -44,6 +45,12 @@ table {
 #results tr td{
   text-align: center;
 }
+
+tbody > tr:last-child > td {
+  border-bottom: none !important;
+}
+
+
 
 /**
   Add some spaces to the track form to make things
@@ -70,12 +77,17 @@ table {
 }
 
 /**
-  Customizing Hover effect on nav to show text 
+  Customizing Hover effect on nav to show text and nav decoration
 */
+
+nav a {
+  text-decoration: none;
+}
 
 nav a:hover {
   color: #009900;
 }
+
 
 /* project form title changes */
 #project_form {
@@ -85,12 +97,21 @@ nav a:hover {
 }
 
 #project_form input[type=submit], input[type=text] {
-  border-radius: 4px;
+  border-radius: 2px;
+  border: none;
+  border-bottom: 0.5px solid black;
 }
 
 
 #results thead th {
   padding: 2px;
+}
+
+/* Create a fixed navigation bar */
+header {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
 }
 
 /**
