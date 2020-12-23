@@ -314,11 +314,7 @@ class Reports {
 		}
 
 		// show all the rows in the table
-		//this.loadTable(this.sortedArray, results);
-
-		console.log(results);
-		buildPaginationTable(state, results);
-
+		this.loadTable(this.sortedArray, results);
 	}
 
 	/**
