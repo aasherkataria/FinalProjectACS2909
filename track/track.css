@@ -8,7 +8,7 @@
 *********/
 
 /************************
-    Track Form Styles
+    TRACK FORM STYLES
 *************************/
 #timer_container a {
     text-align: center;
@@ -21,6 +21,19 @@
     justify-content: center;
     flex-direction: column;
 }
+
+#track_form {
+    margin-bottom: 10px;
+    background-color: #CDCDCD;
+    color: #343434;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+/************************
+      BUTTON STYLES
+************************/
 
 #timer_container a:hover {
     opacity: 80%;
@@ -42,14 +55,9 @@
     display: flex;
 }
 
-#track_form {
-    margin-bottom: 10px;
-    background-color: #CDCDCD;
-    color: #343434;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
+/************************
+      COUNTER STYLES
+************************/
 
 #counter{
     margin-top: 10px;

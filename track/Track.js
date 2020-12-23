@@ -9,9 +9,9 @@ class Track
 	 * */
 	constructor(api, company_id)
 	{
-		this.start_button = document.getElementById('start_button'); //added line
-		this.stop_button = document.getElementById('stop_button'); //added line
-		this.track_form = document.getElementById('track_form'); //added line
+		this.start_button = document.getElementById('start_button'); // targets the start button
+		this.stop_button = document.getElementById('stop_button'); // targets the stop button
+		this.track_form = document.getElementById('track_form'); // targets the track form
 		this.counter = document.getElementById('counter'); // added counter
 		this.seconds = 0;
 		this.minutes = 0;
@@ -37,6 +37,10 @@ class Track
 
 	}
 
+	/**
+	 * The updateTimer method runs every second and displays a counter in the html in the format H:MM:SS.
+	 * It is used to keep track of time from the moment the user clicks start till the moment they click stop.
+	 */
 	updateTimer()
 	{
 		console.log('----- updateTimer -----');
@@ -58,7 +62,6 @@ class Track
 			this.hours = 0;
 		}
 
-		// console.log(this.seconds++ ? running : this.seconds = 0);
 		//append clock to counter div
 		this.counter.textContent = `${this.hours}:${this.minutes < 10 ? '0' : ''}${this.minutes}:${this.seconds < 10 ? '0' : ''}${this.seconds}`;
 	}
@@ -71,8 +74,7 @@ class Track
 
 	/**
 	 * The start method takes 
-	 * @param event the event causing it to start.
-	 * and starts the timer while saving the start timestamp to local storage.
+	 * @param {event} event A click event that triggers the timer to start and saves the start timestamp to local storage.
 	 */
 	start(event)
 	{
@@ -90,6 +92,11 @@ class Track
 		this.running = true;
 	}
 
+	/**
+	 * The stop method takes
+	 * @param {event} event A click event the triggers the clock to make an API request to POST data to the server.
+	 * On a successful response, the success handler stopTimer is called.
+	 */
 	stop(event)
 	{
 		console.log('----- stop -----', event);
@@ -126,19 +133,16 @@ class Track
 	loadProjects()
 	{
 		console.log('----- loadProjects -----');
-		
 		// INSERT YOUR CODE HERE
 		//call the TimeTrackerApi to handle api request.
 		api.makeRequest('GET', `/t-api/companies/${this.company_id}/projects`, {}, this.fillProjectsWithResponse.bind(this));
-
-		// //TEST CODE!
-		// console.log('----- push TestProject -----');
-		// let TestProject = { message : document.getElementById('testProject')};
-
-		// api.makeRequest('POST', "/t-api/projects/", TestProject, this.successHandlerTest);
-
 	}
 
+	/**
+	 * The fillProjectsWithResponse takes 
+	 * @param {Object} xhr_response An object containing information regarding each project.
+	 * And populates the filter form with titles of corresponding projects
+	 */
 	fillProjectsWithResponse(xhr_response)
 	{
 		console.log('----- fillProjectsWithResponse -----', xhr_response);
@@ -161,6 +165,12 @@ class Track
 
 	}
 
+	/**
+	 * The stopTimer method is the success handler for the stop method and takes
+	 * @param {Object} xhr_response An object containing information regarding the entry
+	 * at which the counter was stopped and started.
+	 * It resets the timer, hides the stop button, and shows the start button.
+	 */
 	stopTimer(xhr_response) 
 	{
 		console.log('----- stopTimer -----', xhr_response);
